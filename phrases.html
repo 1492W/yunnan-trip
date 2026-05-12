@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Phrases · 实用中文</title>
+<title>Search Terms · 小红书</title>
 <link rel="stylesheet" href="style.css">
 <style>
   :root {
@@ -49,83 +49,51 @@
     border-color: var(--accent);
   }
   .category {
-    padding-top: 32px;
-    padding-bottom: 8px;
+    padding-top: 28px;
+    padding-bottom: 4px;
     scroll-margin-top: 60px;
   }
-  /* Phrase table style */
-  .phrase-table {
-    margin: 16px 0;
-  }
-  .phrase-row {
-    padding: 14px 0;
+  .term-list { margin: 12px 0; }
+  .term {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 11px 12px;
+    margin: 0 -12px;
     border-bottom: 1px dashed var(--rule);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4px;
     cursor: pointer;
     transition: background 0.15s;
-    margin: 0 -8px;
-    padding-left: 8px;
-    padding-right: 8px;
-    border-radius: 2px;
+    gap: 12px;
+    border-radius: 3px;
   }
-  .phrase-row:hover {
-    background: var(--accent-pale);
-  }
-  .phrase-row:last-child {
-    border-bottom: none;
-  }
-  .phrase-zh {
+  .term:hover, .term:active { background: var(--accent-pale); }
+  .term:last-child { border-bottom: none; }
+  .term-zh {
     font-family: var(--chinese);
-    font-size: 18px;
+    font-size: 16px;
     color: var(--ink);
-    line-height: 1.3;
+    flex-shrink: 0;
   }
-  .phrase-py {
-    font-family: var(--serif);
-    font-style: italic;
+  .term-th {
+    font-family: var(--thai);
     font-size: 13px;
+    color: var(--ink-light);
+    text-align: right;
+  }
+  .term.copied { background: var(--accent) !important; }
+  .term.copied .term-zh, .term.copied .term-th { color: white !important; }
+  .subhead {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--accent);
-    letter-spacing: 0.02em;
+    margin: 22px 0 6px;
+    padding-top: 6px;
+    border-top: 1px solid var(--rule);
   }
-  .phrase-th {
-    font-family: var(--thai);
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.4;
-  }
-  .copied-flash {
-    background: var(--accent) !important;
-  }
-  .copied-flash .phrase-zh,
-  .copied-flash .phrase-py,
-  .copied-flash .phrase-th {
-    color: white !important;
-  }
-  .subsection {
-    font-family: var(--serif);
-    font-size: 19px;
-    font-weight: 500;
-    color: var(--ink);
-    margin: 28px 0 4px;
-    padding-bottom: 4px;
-    border-bottom: 1px solid var(--rule);
-  }
-  .subsection .chinese {
-    font-family: var(--chinese);
-    font-size: 0.75em;
-    color: var(--ink-light);
-    margin-left: 8px;
-    font-weight: 400;
-  }
-  .note {
-    font-family: var(--thai);
-    font-size: 13px;
-    color: var(--ink-light);
-    font-style: italic;
-    margin: 8px 0 14px;
-  }
+  .subhead:first-child { border-top: none; padding-top: 0; }
 </style>
 </head>
 <body>
@@ -133,868 +101,208 @@
 <a href="index.html" class="back-link">← Yunnan Trip</a>
 
 <header class="hero">
-  <div class="hero-eyebrow">REFERENCE · TAP TO COPY</div>
-  <div class="hero-chinese">中文</div>
-  <div class="hero-pinyin">Zhōngwén</div>
-  <h1 class="hero-name">Phrases</h1>
+  <div class="hero-eyebrow">XIAOHONGSHU · TAP TO COPY</div>
+  <div class="hero-chinese">搜索</div>
+  <div class="hero-pinyin">Sōusuǒ</div>
+  <h1 class="hero-name">Search</h1>
   <div class="hero-dates">
-    <span>SURVIVE</span>
+    <span>PLACES</span>
     <span class="dot"></span>
-    <span>SEARCH</span>
-    <span class="dot"></span>
-    <span>CHAT</span>
+    <span>TOPICS</span>
   </div>
-  <p class="hero-tagline">คำและประโยคสำคัญสำหรับทริป — แตะที่บรรทัดเพื่อก็อปปี้ · ใช้กับแอป Meituan, Amap, Xiaohongshu, หรือพูดกับคนท้องถิ่น</p>
+  <p class="hero-tagline">ชื่อสถานที่และหัวข้อที่คุยกันในแต่ละเมือง · แตะเพื่อก็อปปี้ไปแปะใน 小红书</p>
 </header>
 
 <main class="container">
 
   <nav class="cat-nav">
     <div class="cat-nav-inner">
-      <a href="#survival">Survival</a>
-      <a href="#apps">Apps</a>
-      <a href="#food">Food</a>
-      <a href="#transport">Transport</a>
-      <a href="#hotel">Hotel</a>
-      <a href="#shopping">Shopping</a>
-      <a href="#health">Health</a>
-      <a href="#emergency">Emergency</a>
-      <a href="#yunnan">Yunnan</a>
+      <a href="#dali">Dali</a>
+      <a href="#lijiang">Lijiang</a>
+      <a href="#shangrila">Shangri-La</a>
+      <a href="#kunming">Kunming</a>
+      <a href="#combo">Suffixes</a>
     </div>
   </nav>
 
-  <section class="section category" id="survival">
-    <div class="section-label">— DAY 1 BASICS</div>
-    <h2 class="section-title">คำที่ต้องรู้ก่อน <span class="chinese">必备</span></h2>
-    <p class="section-subtitle">ใช้ทุกวัน · จำให้ได้</p>
+  <section class="section category" id="dali">
+    <div class="section-label">— 大理</div>
+    <h2 class="section-title">Dali</h2>
 
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '你好')">
-        <div class="phrase-zh">你好</div>
-        <div class="phrase-py">Nǐ hǎo</div>
-        <div class="phrase-th">สวัสดี</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '谢谢')">
-        <div class="phrase-zh">谢谢</div>
-        <div class="phrase-py">Xièxie</div>
-        <div class="phrase-th">ขอบคุณ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '不客气')">
-        <div class="phrase-zh">不客气</div>
-        <div class="phrase-py">Bú kèqi</div>
-        <div class="phrase-th">ไม่เป็นไร / ยินดี</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '对不起')">
-        <div class="phrase-zh">对不起</div>
-        <div class="phrase-py">Duìbuqǐ</div>
-        <div class="phrase-th">ขอโทษ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '没关系')">
-        <div class="phrase-zh">没关系</div>
-        <div class="phrase-py">Méi guānxi</div>
-        <div class="phrase-th">ไม่เป็นไร (ตอบขอโทษ)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '请问')">
-        <div class="phrase-zh">请问</div>
-        <div class="phrase-py">Qǐngwèn</div>
-        <div class="phrase-th">ขอถามหน่อย (สุภาพ)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '是')">
-        <div class="phrase-zh">是 / 不是</div>
-        <div class="phrase-py">Shì / Bú shì</div>
-        <div class="phrase-th">ใช่ / ไม่ใช่</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '可以')">
-        <div class="phrase-zh">可以 / 不可以</div>
-        <div class="phrase-py">Kěyǐ / Bù kěyǐ</div>
-        <div class="phrase-th">ได้ / ไม่ได้</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我不懂')">
-        <div class="phrase-zh">我不懂</div>
-        <div class="phrase-py">Wǒ bù dǒng</div>
-        <div class="phrase-th">ฉันไม่เข้าใจ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '请说慢一点')">
-        <div class="phrase-zh">请说慢一点</div>
-        <div class="phrase-py">Qǐng shuō màn yīdiǎn</div>
-        <div class="phrase-th">พูดช้าๆ หน่อย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '请再说一遍')">
-        <div class="phrase-zh">请再说一遍</div>
-        <div class="phrase-py">Qǐng zài shuō yí biàn</div>
-        <div class="phrase-th">พูดอีกครั้งได้ไหม</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我是泰国人')">
-        <div class="phrase-zh">我是泰国人</div>
-        <div class="phrase-py">Wǒ shì Tàiguó rén</div>
-        <div class="phrase-th">ฉันเป็นคนไทย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我在学中文')">
-        <div class="phrase-zh">我在学中文</div>
-        <div class="phrase-py">Wǒ zài xué Zhōngwén</div>
-        <div class="phrase-th">ฉันกำลังเรียนภาษาจีน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '在哪里')">
-        <div class="phrase-zh">...在哪里?</div>
-        <div class="phrase-py">...zài nǎlǐ?</div>
-        <div class="phrase-th">...อยู่ที่ไหน?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '多少钱')">
-        <div class="phrase-zh">多少钱?</div>
-        <div class="phrase-py">Duōshao qián?</div>
-        <div class="phrase-th">ราคาเท่าไหร่?</div>
-      </div>
+    <div class="subhead">เขาชางซาน · ดอกไม้</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">苍山 杜鹃</span><span class="term-th">กุหลาบพันปีบนเขา</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">洗马潭 大索道</span><span class="term-th">กระเช้ายอด Ximatan</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">玉带云游路</span><span class="term-th">Cloud Path เส้นเดินป่า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">寂照庵 绣球花</span><span class="term-th">วัดแม่ชี + ไฮเดรนเยีย</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">感通寺</span><span class="term-th">วัด Gantong</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">清碧溪</span><span class="term-th">ลำธาร 3 บ่อน้ำ</span></div>
+    </div>
+
+    <div class="subhead">เอ๋อไห่ + รอบทะเลสาบ</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">洱海 骑行</span><span class="term-th">ปั่นรอบเอ๋อไห่</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">环洱海</span><span class="term-th">รอบเอ๋อไห่</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">喜洲古镇</span><span class="term-th">หมู่บ้านชาวไป๋</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">双廊</span><span class="term-th">หมู่บ้านริมน้ำ</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">海舌公园</span><span class="term-th">แหลม Hai She</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">小普陀</span><span class="term-th">เกาะวัดกลางน้ำ</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">才村</span><span class="term-th">Caicun (ที่พักริมน้ำ)</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">周城 扎染</span><span class="term-th">Zhoucheng + tie-dye</span></div>
+    </div>
+
+    <div class="subhead">เมืองเก่า + วัด</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">大理古城</span><span class="term-th">เมืองเก่า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">崇圣寺三塔</span><span class="term-th">สามเจดีย์</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">猫猫花园</span><span class="term-th">สวนไฮเดรนเยีย</span></div>
+    </div>
+
+    <div class="subhead">เช่ารถ + การเดินทาง</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">大理 电动车租赁</span><span class="term-th">เช่ามอเตอร์ไซค์ไฟฟ้า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">百客屋</span><span class="term-th">Baikewu ร้านเช่า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">大理 包车</span><span class="term-th">เหมารถ</span></div>
     </div>
   </section>
 
-  <section class="section category" id="apps">
-    <div class="section-label">— APP SEARCH TERMS</div>
-    <h2 class="section-title">ค้นในแอป <span class="chinese">应用搜索</span></h2>
-    <p class="section-subtitle">Meituan · Dianping · Amap · Xiaohongshu · Trip.com</p>
+  <section class="section category" id="lijiang">
+    <div class="section-label">— 丽江</div>
+    <h2 class="section-title">Lijiang</h2>
 
-    <div class="subsection">Meituan / Dianping (美团 / 大众点评) <span class="chinese">หาร้านอาหาร / บริการ</span></div>
-    <div class="note">เปลี่ยนเมือง (定位) ก่อน · กดเพื่อ copy ใส่ในแอป</div>
-
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '附近美食')">
-        <div class="phrase-zh">附近美食</div>
-        <div class="phrase-py">Fùjìn měishí</div>
-        <div class="phrase-th">ร้านอาหารใกล้ๆ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '过桥米线')">
-        <div class="phrase-zh">过桥米线</div>
-        <div class="phrase-py">Guò qiáo mǐxiàn</div>
-        <div class="phrase-th">ก๋วยเตี๋ยวข้ามสะพาน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '野生菌火锅')">
-        <div class="phrase-zh">野生菌火锅</div>
-        <div class="phrase-py">Yěshēng jūn huǒguō</div>
-        <div class="phrase-th">หม้อไฟเห็ดป่า</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '汽锅鸡')">
-        <div class="phrase-zh">汽锅鸡</div>
-        <div class="phrase-py">Qì guō jī</div>
-        <div class="phrase-th">Steam Pot Chicken</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '电动车租赁')">
-        <div class="phrase-zh">电动车租赁</div>
-        <div class="phrase-py">Diàndòngchē zūlìn</div>
-        <div class="phrase-th">เช่ามอเตอร์ไซค์ไฟฟ้า</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '自行车租赁')">
-        <div class="phrase-zh">自行车租赁</div>
-        <div class="phrase-py">Zìxíngchē zūlìn</div>
-        <div class="phrase-th">เช่าจักรยาน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '包车')">
-        <div class="phrase-zh">包车</div>
-        <div class="phrase-py">Bāo chē</div>
-        <div class="phrase-th">เหมารถ + คนขับ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '按摩')">
-        <div class="phrase-zh">按摩 / 足疗</div>
-        <div class="phrase-py">Ànmó / Zú liáo</div>
-        <div class="phrase-th">นวด / นวดเท้า</div>
-      </div>
+    <div class="subhead">ภูเขาหิมะมังกรหยก</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">玉龙雪山 牦牛坪</span><span class="term-th">Maoniuping ทุ่งหญ้า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">蓝月谷</span><span class="term-th">Blue Moon Valley</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">云杉坪</span><span class="term-th">Yunshanping</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">玉龙雪山 冰川公园</span><span class="term-th">Glacier Park 4,680ม.</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">绿绒蒿 玉龙雪山</span><span class="term-th">Blue Poppy ดอกหายาก</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">高山杜鹃</span><span class="term-th">กุหลาบพันปีบนสูง</span></div>
     </div>
 
-    <div class="subsection">Amap (高德地图) <span class="chinese">แผนที่ + เส้นทาง</span></div>
-    <div class="note">Google Maps ไม่แม่น · Amap แม่นที่สุดในจีน</div>
-
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '加油站')">
-        <div class="phrase-zh">加油站</div>
-        <div class="phrase-py">Jiā yóu zhàn</div>
-        <div class="phrase-th">ปั๊มน้ำมัน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '充电站')">
-        <div class="phrase-zh">充电站</div>
-        <div class="phrase-py">Chōngdiàn zhàn</div>
-        <div class="phrase-th">สถานีชาร์จ EV</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '高铁站')">
-        <div class="phrase-zh">高铁站</div>
-        <div class="phrase-py">Gāotiě zhàn</div>
-        <div class="phrase-th">สถานีรถไฟความเร็วสูง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '机场')">
-        <div class="phrase-zh">机场</div>
-        <div class="phrase-py">Jīchǎng</div>
-        <div class="phrase-th">สนามบิน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '医院')">
-        <div class="phrase-zh">医院</div>
-        <div class="phrase-py">Yīyuàn</div>
-        <div class="phrase-th">โรงพยาบาล</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '便利店')">
-        <div class="phrase-zh">便利店</div>
-        <div class="phrase-py">Biànlì diàn</div>
-        <div class="phrase-th">ร้านสะดวกซื้อ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '超市')">
-        <div class="phrase-zh">超市</div>
-        <div class="phrase-py">Chāoshì</div>
-        <div class="phrase-th">ซูเปอร์มาร์เก็ต</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '药店')">
-        <div class="phrase-zh">药店</div>
-        <div class="phrase-py">Yào diàn</div>
-        <div class="phrase-th">ร้านขายยา</div>
-      </div>
+    <div class="subhead">เมืองเก่า + รอบเมือง</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">丽江古城</span><span class="term-th">เมืองเก่าลี่เจียง</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">束河古镇</span><span class="term-th">Shuhe เก่าน่าพัก</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">白沙古镇</span><span class="term-th">Baisha เก่าแก่ที่สุด</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">黑龙潭</span><span class="term-th">บ่อสะท้อนภูเขาหิมะ</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">狮子山</span><span class="term-th">Lion Hill จุดชมเมือง</span></div>
     </div>
 
-    <div class="subsection">Xiaohongshu (小红书) <span class="chinese">หาแรงบันดาลใจ</span></div>
-    <div class="note">เห็นโพสต์จริงของคนไปแล้ว · เทียบกับ Pinterest + Instagram</div>
+    <div class="subhead">เดินป่า + hidden gem</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">文海</span><span class="term-th">Wenhai ทะเลสาบฤดูกาล</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">九子海</span><span class="term-th">Jiuzihai ทุ่งหญ้า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">拉市海 骑马</span><span class="term-th">Lashihai ขี่ม้า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">玉湖村</span><span class="term-th">Yuhu Village</span></div>
+    </div>
 
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '攻略')">
-        <div class="phrase-zh">攻略</div>
-        <div class="phrase-py">Gōnglüè</div>
-        <div class="phrase-th">ไกด์เที่ยว (ใส่ท้ายคำใดก็ได้)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '一日游')">
-        <div class="phrase-zh">一日游</div>
-        <div class="phrase-py">Yí rì yóu</div>
-        <div class="phrase-th">ทริปวันเดียว</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '亲子游')">
-        <div class="phrase-zh">亲子游</div>
-        <div class="phrase-py">Qīnzǐ yóu</div>
-        <div class="phrase-th">ทริปครอบครัวกับเด็ก</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '徒步')">
-        <div class="phrase-zh">徒步</div>
-        <div class="phrase-py">Túbù</div>
-        <div class="phrase-th">เดินป่า / hiking</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '骑行')">
-        <div class="phrase-zh">骑行</div>
-        <div class="phrase-py">Qí xíng</div>
-        <div class="phrase-th">ปั่นจักรยาน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '拍照')">
-        <div class="phrase-zh">拍照 / 出片</div>
-        <div class="phrase-py">Pāizhào / Chū piàn</div>
-        <div class="phrase-th">ถ่ายรูป / ภาพออกสวย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '机位')">
-        <div class="phrase-zh">机位</div>
-        <div class="phrase-py">Jī wèi</div>
-        <div class="phrase-th">มุมถ่ายรูป</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '实拍')">
-        <div class="phrase-zh">实拍</div>
-        <div class="phrase-py">Shí pāi</div>
-        <div class="phrase-th">ภาพจริง (ไม่ใช่ AI)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '避雷')">
-        <div class="phrase-zh">避雷</div>
-        <div class="phrase-py">Bì léi</div>
-        <div class="phrase-th">หลีกเลี่ยง / กับดักนักท่องเที่ยว</div>
-      </div>
+    <div class="subhead">Tiger Leaping Gorge (เก็บไว้คราวหน้า)</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">虎跳峡 徒步</span><span class="term-th">เดินป่า TLG</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">虎跳峡 高路</span><span class="term-th">High Trail</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">28道拐</span><span class="term-th">28 Bends</span></div>
     </div>
   </section>
 
-  <section class="section category" id="food">
-    <div class="section-label">— EATING OUT</div>
-    <h2 class="section-title">ร้านอาหาร <span class="chinese">餐厅</span></h2>
+  <section class="section category" id="shangrila">
+    <div class="section-label">— 香格里拉</div>
+    <h2 class="section-title">Shangri-La</h2>
 
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '我要这个')">
-        <div class="phrase-zh">我要这个</div>
-        <div class="phrase-py">Wǒ yào zhège</div>
-        <div class="phrase-th">เอาอันนี้ (ชี้รูป/เมนู)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '不要辣')">
-        <div class="phrase-zh">不要辣</div>
-        <div class="phrase-py">Bú yào là</div>
-        <div class="phrase-th">ไม่เผ็ด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '微辣')">
-        <div class="phrase-zh">微辣 / 中辣 / 特辣</div>
-        <div class="phrase-py">Wēi là / Zhōng là / Tè là</div>
-        <div class="phrase-th">เผ็ดน้อย / กลาง / มาก</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '不要香菜')">
-        <div class="phrase-zh">不要香菜</div>
-        <div class="phrase-py">Bú yào xiāngcài</div>
-        <div class="phrase-th">ไม่ใส่ผักชี</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我吃素')">
-        <div class="phrase-zh">我吃素</div>
-        <div class="phrase-py">Wǒ chī sù</div>
-        <div class="phrase-th">ฉันกินมังสวิรัติ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我对...过敏')">
-        <div class="phrase-zh">我对...过敏</div>
-        <div class="phrase-py">Wǒ duì... guòmǐn</div>
-        <div class="phrase-th">ฉันแพ้... (ใส่ของที่แพ้)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '推荐')">
-        <div class="phrase-zh">推荐什么?</div>
-        <div class="phrase-py">Tuījiàn shénme?</div>
-        <div class="phrase-th">แนะนำเมนูอะไร?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '招牌菜')">
-        <div class="phrase-zh">招牌菜</div>
-        <div class="phrase-py">Zhāopái cài</div>
-        <div class="phrase-th">เมนูเด็ดของร้าน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '买单')">
-        <div class="phrase-zh">买单 / 结账</div>
-        <div class="phrase-py">Mǎi dān / Jié zhàng</div>
-        <div class="phrase-th">เช็คบิล</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '打包')">
-        <div class="phrase-zh">打包</div>
-        <div class="phrase-py">Dǎ bāo</div>
-        <div class="phrase-th">ห่อกลับ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '加水')">
-        <div class="phrase-zh">加水 / 加汤</div>
-        <div class="phrase-py">Jiā shuǐ / Jiā tāng</div>
-        <div class="phrase-th">เติมน้ำ / เติมน้ำซุป</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '好吃')">
-        <div class="phrase-zh">好吃!</div>
-        <div class="phrase-py">Hǎo chī!</div>
-        <div class="phrase-th">อร่อย!</div>
-      </div>
+    <div class="subhead">ธรรมชาติ · ทุ่งหญ้า</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">普达措 一日游</span><span class="term-th">Pudacuo ทั้งวัน</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">属都湖</span><span class="term-th">Shudu Lake</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">碧塔海</span><span class="term-th">Bita Lake</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">纳帕海 骑马</span><span class="term-th">Napa Lake ขี่ม้า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">依拉草原</span><span class="term-th">Yila Grassland</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">碧沽天池 6月</span><span class="term-th">Bigu Tianchi + กุหลาบพันปี</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">石卡雪山</span><span class="term-th">Shika Snow Mountain</span></div>
     </div>
 
-    <div class="subsection">เครื่องดื่ม <span class="chinese">饮料</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '热水')">
-        <div class="phrase-zh">热水</div>
-        <div class="phrase-py">Rè shuǐ</div>
-        <div class="phrase-th">น้ำร้อน (จีนชอบดื่ม)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '冰水')">
-        <div class="phrase-zh">冰水 / 凉水</div>
-        <div class="phrase-py">Bīng shuǐ / Liáng shuǐ</div>
-        <div class="phrase-th">น้ำเย็น</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '茶')">
-        <div class="phrase-zh">茶 / 普洱茶</div>
-        <div class="phrase-py">Chá / Pǔ'ěr chá</div>
-        <div class="phrase-th">ชา / ชาผูเอ่อร์</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '咖啡')">
-        <div class="phrase-zh">咖啡 / 拿铁 / 美式</div>
-        <div class="phrase-py">Kāfēi / Ná tiě / Měi shì</div>
-        <div class="phrase-th">กาแฟ / latte / americano</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '少糖')">
-        <div class="phrase-zh">少糖 / 无糖</div>
-        <div class="phrase-py">Shǎo táng / Wú táng</div>
-        <div class="phrase-th">หวานน้อย / ไม่หวาน</div>
-      </div>
+    <div class="subhead">วัฒนธรรมทิเบต</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">松赞林寺</span><span class="term-th">Songzanlin วัดใหญ่</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">独克宗古城</span><span class="term-th">Dukezong + กังหันมนต์</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">藏餐</span><span class="term-th">อาหารทิเบต</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">哈姆谷村</span><span class="term-th">หมู่บ้านทิเบต Hamugu</span></div>
+    </div>
+
+    <div class="subhead">ไกลออกไป</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">梅里雪山</span><span class="term-th">Meili Snow Mountain</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">雨崩村</span><span class="term-th">Yubeng Village trek</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">飞来寺 日照金山</span><span class="term-th">Feilai วิวภูเขาทอง</span></div>
     </div>
   </section>
 
-  <section class="section category" id="transport">
-    <div class="section-label">— GETTING AROUND</div>
-    <h2 class="section-title">การเดินทาง <span class="chinese">交通</span></h2>
+  <section class="section category" id="kunming">
+    <div class="section-label">— 昆明</div>
+    <h2 class="section-title">Kunming</h2>
 
-    <div class="subsection">รถไฟ <span class="chinese">火车</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '高铁')">
-        <div class="phrase-zh">高铁 / 动车</div>
-        <div class="phrase-py">Gāotiě / Dòngchē</div>
-        <div class="phrase-th">รถไฟความเร็วสูง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '一等座')">
-        <div class="phrase-zh">一等座 / 二等座</div>
-        <div class="phrase-py">Yī děng zuò / Èr děng zuò</div>
-        <div class="phrase-th">ที่นั่ง first class / second class</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '商务座')">
-        <div class="phrase-zh">商务座</div>
-        <div class="phrase-py">Shāngwù zuò</div>
-        <div class="phrase-th">business class (กว้างที่สุด)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '检票口')">
-        <div class="phrase-zh">检票口</div>
-        <div class="phrase-py">Jiǎn piào kǒu</div>
-        <div class="phrase-th">ทางเข้าเช็คตั๋ว</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '候车室')">
-        <div class="phrase-zh">候车室</div>
-        <div class="phrase-py">Hòu chē shì</div>
-        <div class="phrase-th">ห้องรอ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '改签')">
-        <div class="phrase-zh">改签</div>
-        <div class="phrase-py">Gǎi qiān</div>
-        <div class="phrase-th">เปลี่ยนตั๋ว</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '退票')">
-        <div class="phrase-zh">退票</div>
-        <div class="phrase-py">Tuì piào</div>
-        <div class="phrase-th">คืนตั๋ว</div>
-      </div>
+    <div class="subhead">ในเมือง</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">翠湖公园</span><span class="term-th">Green Lake</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">圆通寺</span><span class="term-th">วัด Yuantong</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">昆明老街</span><span class="term-th">Old Street</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">金马碧鸡坊</span><span class="term-th">ซุ้มประตู</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">文林街 咖啡</span><span class="term-th">Wenlin คาเฟ่</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">云南省博物馆</span><span class="term-th">พิพิธภัณฑ์ยูนนาน</span></div>
     </div>
 
-    <div class="subsection">Didi / Taxi <span class="chinese">滴滴 / 出租车</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '请带我去这里')">
-        <div class="phrase-zh">请带我去这里</div>
-        <div class="phrase-py">Qǐng dài wǒ qù zhèlǐ</div>
-        <div class="phrase-th">พาฉันไปที่นี่ (โชว์หน้าจอ)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '快一点')">
-        <div class="phrase-zh">快一点 / 慢一点</div>
-        <div class="phrase-py">Kuài yīdiǎn / Màn yīdiǎn</div>
-        <div class="phrase-th">เร็วหน่อย / ช้าหน่อย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '到了')">
-        <div class="phrase-zh">到了 / 在这里下</div>
-        <div class="phrase-py">Dào le / Zài zhèlǐ xià</div>
-        <div class="phrase-th">ถึงแล้ว / ลงที่นี่</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '请等一下')">
-        <div class="phrase-zh">请等一下</div>
-        <div class="phrase-py">Qǐng děng yīxià</div>
-        <div class="phrase-th">รอแป๊บนึง</div>
-      </div>
+    <div class="subhead">เตียนฉือ + ปั่นจักรยาน</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">滇池 一日游</span><span class="term-th">เตียนฉือทั้งวัน</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">海埂大坝</span><span class="term-th">Haigeng Dam</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">西山 龙门</span><span class="term-th">Western Hills + Dragon Gate</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">云南民族村</span><span class="term-th">หมู่บ้านชนเผ่า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">环滇池骑行</span><span class="term-th">ปั่นรอบเตียนฉือ</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">滇池绿道</span><span class="term-th">Greenway</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">草海绿道</span><span class="term-th">Caohai loop</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">77单车</span><span class="term-th">ร้านเช่าจักรยาน 77</span></div>
     </div>
 
-    <div class="subsection">เช่ารถ <span class="chinese">租车</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '一天多少钱')">
-        <div class="phrase-zh">一天多少钱?</div>
-        <div class="phrase-py">Yì tiān duōshao qián?</div>
-        <div class="phrase-th">ราคาวันละเท่าไหร่?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '押金')">
-        <div class="phrase-zh">押金</div>
-        <div class="phrase-py">Yā jīn</div>
-        <div class="phrase-th">เงินมัดจำ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '充电')">
-        <div class="phrase-zh">充电 / 没电了</div>
-        <div class="phrase-py">Chōng diàn / Méi diàn le</div>
-        <div class="phrase-th">ชาร์จไฟ / แบตหมด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '头盔')">
-        <div class="phrase-zh">头盔</div>
-        <div class="phrase-py">Tóu kuī</div>
-        <div class="phrase-th">หมวกกันน็อก</div>
-      </div>
+    <div class="subhead">Day trip</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">石林</span><span class="term-th">Stone Forest</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">东川红土地</span><span class="term-th">Red Land</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">建水古城</span><span class="term-th">Jianshui เมืองโบราณ</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">抚仙湖</span><span class="term-th">Fuxian Lake</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">九乡风景区</span><span class="term-th">Jiuxiang Caves</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">轿子雪山</span><span class="term-th">Jiaozi Snow Mountain</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">元阳梯田</span><span class="term-th">Yuanyang นาขั้นบันได</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">安宁温泉</span><span class="term-th">Anning Hot Spring</span></div>
+    </div>
+
+    <div class="subhead">อาหาร · ตลาด</div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">昆明 野生菌</span><span class="term-th">เห็ดป่า (มิ.ย.-ก.ย.)</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">过桥米线</span><span class="term-th">ก๋วยเตี๋ยวข้ามสะพาน</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">汽锅鸡</span><span class="term-th">Steam Pot Chicken</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">斗南花市</span><span class="term-th">ตลาดดอกไม้</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">云南咖啡</span><span class="term-th">กาแฟยูนนาน</span></div>
     </div>
   </section>
 
-  <section class="section category" id="hotel">
-    <div class="section-label">— ACCOMMODATION</div>
-    <h2 class="section-title">โรงแรม <span class="chinese">酒店</span></h2>
+  <section class="section category" id="combo">
+    <div class="section-label">— USEFUL SUFFIXES</div>
+    <h2 class="section-title">คำต่อท้าย</h2>
+    <p class="section-subtitle">ใส่ท้ายชื่อสถานที่เพื่อหาประเภทโพสต์ที่ต้องการ</p>
 
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '我有预订')">
-        <div class="phrase-zh">我有预订</div>
-        <div class="phrase-py">Wǒ yǒu yùdìng</div>
-        <div class="phrase-th">ฉันมีจองห้อง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '入住')">
-        <div class="phrase-zh">入住 / 退房</div>
-        <div class="phrase-py">Rù zhù / Tuì fáng</div>
-        <div class="phrase-th">เช็คอิน / เช็คเอาท์</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '寄存行李')">
-        <div class="phrase-zh">寄存行李</div>
-        <div class="phrase-py">Jì cún xíng li</div>
-        <div class="phrase-th">ฝากกระเป๋า</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '行李托运')">
-        <div class="phrase-zh">行李托运到...</div>
-        <div class="phrase-py">Xíng li tuō yùn dào...</div>
-        <div class="phrase-th">ส่งกระเป๋าไปที่... (ระหว่างเมือง)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, 'WiFi密码')">
-        <div class="phrase-zh">WiFi密码</div>
-        <div class="phrase-py">WiFi mìmǎ</div>
-        <div class="phrase-th">รหัส WiFi</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '空调')">
-        <div class="phrase-zh">空调 / 暖气</div>
-        <div class="phrase-py">Kōng tiáo / Nuǎn qì</div>
-        <div class="phrase-th">แอร์ / ฮีตเตอร์</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '热水')">
-        <div class="phrase-zh">没有热水</div>
-        <div class="phrase-py">Méi yǒu rè shuǐ</div>
-        <div class="phrase-th">น้ำร้อนไม่ออก</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '换房间')">
-        <div class="phrase-zh">换房间</div>
-        <div class="phrase-py">Huàn fáng jiān</div>
-        <div class="phrase-th">เปลี่ยนห้อง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '安静一点')">
-        <div class="phrase-zh">安静一点</div>
-        <div class="phrase-py">Ānjìng yīdiǎn</div>
-        <div class="phrase-th">เงียบกว่านี้</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '湖景房')">
-        <div class="phrase-zh">湖景房 / 山景房</div>
-        <div class="phrase-py">Hú jǐng fáng / Shān jǐng fáng</div>
-        <div class="phrase-th">ห้องวิวทะเลสาบ / ภูเขา</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section category" id="shopping">
-    <div class="section-label">— SHOPPING & MONEY</div>
-    <h2 class="section-title">ซื้อของ + เงิน <span class="chinese">购物</span></h2>
-
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '可以便宜一点吗')">
-        <div class="phrase-zh">可以便宜一点吗?</div>
-        <div class="phrase-py">Kěyǐ piányi yīdiǎn ma?</div>
-        <div class="phrase-th">ลดราคาได้ไหม?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '太贵了')">
-        <div class="phrase-zh">太贵了</div>
-        <div class="phrase-py">Tài guì le</div>
-        <div class="phrase-th">แพงเกินไป</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我看看')">
-        <div class="phrase-zh">我看看</div>
-        <div class="phrase-py">Wǒ kàn kan</div>
-        <div class="phrase-th">ขอดูก่อน (ไม่กดดัน)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '可以试一下吗')">
-        <div class="phrase-zh">可以试一下吗?</div>
-        <div class="phrase-py">Kěyǐ shì yīxià ma?</div>
-        <div class="phrase-th">ลองได้ไหม?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '有别的颜色吗')">
-        <div class="phrase-zh">有别的颜色吗?</div>
-        <div class="phrase-py">Yǒu biéde yánsè ma?</div>
-        <div class="phrase-th">มีสีอื่นไหม?</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '支付宝')">
-        <div class="phrase-zh">支付宝 / 微信</div>
-        <div class="phrase-py">Zhīfùbǎo / Wēixìn</div>
-        <div class="phrase-th">Alipay / WeChat Pay</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '扫码')">
-        <div class="phrase-zh">扫码</div>
-        <div class="phrase-py">Sǎo mǎ</div>
-        <div class="phrase-th">สแกน QR</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '现金')">
-        <div class="phrase-zh">现金</div>
-        <div class="phrase-py">Xiàn jīn</div>
-        <div class="phrase-th">เงินสด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '找零')">
-        <div class="phrase-zh">找零</div>
-        <div class="phrase-py">Zhǎo líng</div>
-        <div class="phrase-th">เงินทอน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '发票')">
-        <div class="phrase-zh">发票</div>
-        <div class="phrase-py">Fā piào</div>
-        <div class="phrase-th">ใบเสร็จ</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section category" id="health">
-    <div class="section-label">— HEALTH</div>
-    <h2 class="section-title">สุขภาพ <span class="chinese">健康</span></h2>
-
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '我不舒服')">
-        <div class="phrase-zh">我不舒服</div>
-        <div class="phrase-py">Wǒ bù shūfu</div>
-        <div class="phrase-th">ฉันไม่สบาย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '头疼')">
-        <div class="phrase-zh">头疼</div>
-        <div class="phrase-py">Tóu téng</div>
-        <div class="phrase-th">ปวดหัว</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '肚子疼')">
-        <div class="phrase-zh">肚子疼</div>
-        <div class="phrase-py">Dùzi téng</div>
-        <div class="phrase-th">ปวดท้อง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '发烧')">
-        <div class="phrase-zh">发烧</div>
-        <div class="phrase-py">Fā shāo</div>
-        <div class="phrase-th">เป็นไข้</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '感冒')">
-        <div class="phrase-zh">感冒</div>
-        <div class="phrase-py">Gǎn mào</div>
-        <div class="phrase-th">หวัด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '拉肚子')">
-        <div class="phrase-zh">拉肚子</div>
-        <div class="phrase-py">Lā dùzi</div>
-        <div class="phrase-th">ท้องเสีย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '高原反应')">
-        <div class="phrase-zh">高原反应 / 高反</div>
-        <div class="phrase-py">Gāoyuán fǎnyìng / Gāo fǎn</div>
-        <div class="phrase-th">แพ้ความสูง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '止痛药')">
-        <div class="phrase-zh">止痛药</div>
-        <div class="phrase-py">Zhǐ tòng yào</div>
-        <div class="phrase-th">ยาแก้ปวด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '感冒药')">
-        <div class="phrase-zh">感冒药</div>
-        <div class="phrase-py">Gǎn mào yào</div>
-        <div class="phrase-th">ยาแก้หวัด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '过敏')">
-        <div class="phrase-zh">过敏</div>
-        <div class="phrase-py">Guò mǐn</div>
-        <div class="phrase-th">แพ้ (อาหาร/ยา)</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section category" id="emergency">
-    <div class="section-label">— EMERGENCY</div>
-    <h2 class="section-title">ฉุกเฉิน <span class="chinese">紧急</span></h2>
-
-    <div class="info-grid" style="margin-bottom: 20px;">
-      <div class="info-block">
-        <div class="info-block-label">POLICE</div>
-        <div class="info-block-content"><strong>110</strong> · 警察 (Jǐngchá)</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">AMBULANCE</div>
-        <div class="info-block-content"><strong>120</strong> · 救护车 (Jiù hù chē)</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">FIRE</div>
-        <div class="info-block-content"><strong>119</strong> · 消防 (Xiāo fáng)</div>
-      </div>
-      <div class="info-block">
-        <div class="info-block-label">THAI EMBASSY</div>
-        <div class="info-block-content">สถานทูตไทย ปักกิ่ง · กงสุลที่คุนหมิง · +86 871-6316-8916</div>
-      </div>
-    </div>
-
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '帮我')">
-        <div class="phrase-zh">帮我! / 救命!</div>
-        <div class="phrase-py">Bāng wǒ! / Jiù mìng!</div>
-        <div class="phrase-th">ช่วยฉันด้วย! / ช่วยด้วย!</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我迷路了')">
-        <div class="phrase-zh">我迷路了</div>
-        <div class="phrase-py">Wǒ mí lù le</div>
-        <div class="phrase-th">ฉันหลงทาง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我的护照丢了')">
-        <div class="phrase-zh">我的护照丢了</div>
-        <div class="phrase-py">Wǒ de hùzhào diū le</div>
-        <div class="phrase-th">พาสปอร์ตของฉันหาย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我的手机丢了')">
-        <div class="phrase-zh">我的手机丢了</div>
-        <div class="phrase-py">Wǒ de shǒujī diū le</div>
-        <div class="phrase-th">มือถือฉันหาย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '叫救护车')">
-        <div class="phrase-zh">叫救护车</div>
-        <div class="phrase-py">Jiào jiù hù chē</div>
-        <div class="phrase-th">เรียกรถพยาบาล</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '报警')">
-        <div class="phrase-zh">报警</div>
-        <div class="phrase-py">Bào jǐng</div>
-        <div class="phrase-th">แจ้งตำรวจ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '我需要泰国翻译')">
-        <div class="phrase-zh">我需要泰国翻译</div>
-        <div class="phrase-py">Wǒ xūyào Tàiguó fānyì</div>
-        <div class="phrase-th">ขอล่ามภาษาไทย</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-mark">滇</div>
-    <div class="divider-line"></div>
-  </div>
-
-  <section class="section category" id="yunnan">
-    <div class="section-label">— YUNNAN SPECIFIC</div>
-    <h2 class="section-title">คำเฉพาะยูนนาน <span class="chinese">云南特色</span></h2>
-
-    <div class="subsection">ชนเผ่า <span class="chinese">民族</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '白族')">
-        <div class="phrase-zh">白族</div>
-        <div class="phrase-py">Bái zú</div>
-        <div class="phrase-th">ชาวไป๋ (ต้าลี่)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '纳西族')">
-        <div class="phrase-zh">纳西族</div>
-        <div class="phrase-py">Nàxī zú</div>
-        <div class="phrase-th">ชาวน่าซี (ลี่เจียง)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '藏族')">
-        <div class="phrase-zh">藏族</div>
-        <div class="phrase-py">Zàng zú</div>
-        <div class="phrase-th">ชาวทิเบต (แชงกรีล่า)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '彝族')">
-        <div class="phrase-zh">彝族</div>
-        <div class="phrase-py">Yí zú</div>
-        <div class="phrase-th">ชาวอี (Stone Forest)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '傣族')">
-        <div class="phrase-zh">傣族</div>
-        <div class="phrase-py">Dǎi zú</div>
-        <div class="phrase-th">ชาวไต (สิบสองปันนา)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '哈尼族')">
-        <div class="phrase-zh">哈尼族</div>
-        <div class="phrase-py">Hāní zú</div>
-        <div class="phrase-th">ชาวฮานี (หยวนหยาง)</div>
-      </div>
-    </div>
-
-    <div class="subsection">อาหารยูนนาน <span class="chinese">滇菜</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '过桥米线')">
-        <div class="phrase-zh">过桥米线</div>
-        <div class="phrase-py">Guò qiáo mǐxiàn</div>
-        <div class="phrase-th">ก๋วยเตี๋ยวข้ามสะพาน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '汽锅鸡')">
-        <div class="phrase-zh">汽锅鸡</div>
-        <div class="phrase-py">Qì guō jī</div>
-        <div class="phrase-th">ไก่ตุ๋นหม้อไอน้ำ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '野生菌')">
-        <div class="phrase-zh">野生菌</div>
-        <div class="phrase-py">Yěshēng jūn</div>
-        <div class="phrase-th">เห็ดป่า (มิ.ย.-ก.ย.)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '松茸')">
-        <div class="phrase-zh">松茸</div>
-        <div class="phrase-py">Sōng róng</div>
-        <div class="phrase-th">Matsutake เห็ดราคาแพง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '饵块')">
-        <div class="phrase-zh">饵块</div>
-        <div class="phrase-py">Ěr kuài</div>
-        <div class="phrase-th">เค้กข้าวยูนนาน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '乳扇')">
-        <div class="phrase-zh">乳扇</div>
-        <div class="phrase-py">Rǔ shàn</div>
-        <div class="phrase-th">ชีสนมแพะของชาวไป๋</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '酥油茶')">
-        <div class="phrase-zh">酥油茶</div>
-        <div class="phrase-py">Sū yóu chá</div>
-        <div class="phrase-th">ชาเนยทิเบต</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '青稞酒')">
-        <div class="phrase-zh">青稞酒</div>
-        <div class="phrase-py">Qīng kē jiǔ</div>
-        <div class="phrase-th">เหล้าข้าวบาเล่ย์ทิเบต</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '牦牛肉')">
-        <div class="phrase-zh">牦牛肉</div>
-        <div class="phrase-py">Máo niú ròu</div>
-        <div class="phrase-th">เนื้อจามรี</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '鲜花饼')">
-        <div class="phrase-zh">鲜花饼</div>
-        <div class="phrase-py">Xiān huā bǐng</div>
-        <div class="phrase-th">ขนมไส้ดอกกุหลาบ (ของฝาก)</div>
-      </div>
-    </div>
-
-    <div class="subsection">ภูมิประเทศ <span class="chinese">地理</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '雪山')">
-        <div class="phrase-zh">雪山</div>
-        <div class="phrase-py">Xuě shān</div>
-        <div class="phrase-th">ภูเขาหิมะ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '冰川')">
-        <div class="phrase-zh">冰川</div>
-        <div class="phrase-py">Bīng chuān</div>
-        <div class="phrase-th">ธารน้ำแข็ง</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '草原')">
-        <div class="phrase-zh">草原</div>
-        <div class="phrase-py">Cǎo yuán</div>
-        <div class="phrase-th">ทุ่งหญ้า</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '湿地')">
-        <div class="phrase-zh">湿地</div>
-        <div class="phrase-py">Shī dì</div>
-        <div class="phrase-th">พื้นที่ลุ่มน้ำ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '梯田')">
-        <div class="phrase-zh">梯田</div>
-        <div class="phrase-py">Tī tián</div>
-        <div class="phrase-th">นาขั้นบันได</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '古城')">
-        <div class="phrase-zh">古城 / 古镇</div>
-        <div class="phrase-py">Gǔ chéng / Gǔ zhèn</div>
-        <div class="phrase-th">เมืองโบราณ / หมู่บ้านโบราณ</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '寺庙')">
-        <div class="phrase-zh">寺庙 / 寺</div>
-        <div class="phrase-py">Sì miào / Sì</div>
-        <div class="phrase-th">วัด</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '索道')">
-        <div class="phrase-zh">索道 / 缆车</div>
-        <div class="phrase-py">Suǒ dào / Lǎn chē</div>
-        <div class="phrase-th">กระเช้าลอยฟ้า</div>
-      </div>
-    </div>
-
-    <div class="subsection">ดอกไม้ <span class="chinese">花</span></div>
-    <div class="phrase-table">
-      <div class="phrase-row" onclick="copy(this, '杜鹃花')">
-        <div class="phrase-zh">杜鹃花</div>
-        <div class="phrase-py">Dù juān huā</div>
-        <div class="phrase-th">กุหลาบพันปี (Rhododendron)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '绣球花')">
-        <div class="phrase-zh">绣球花</div>
-        <div class="phrase-py">Xiù qiú huā</div>
-        <div class="phrase-th">ไฮเดรนเยีย</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '绿绒蒿')">
-        <div class="phrase-zh">绿绒蒿</div>
-        <div class="phrase-py">Lǜ róng hāo</div>
-        <div class="phrase-th">Blue Poppy (หายาก)</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '荷花')">
-        <div class="phrase-zh">荷花 / 莲花</div>
-        <div class="phrase-py">Hé huā / Lián huā</div>
-        <div class="phrase-th">ดอกบัว</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '向日葵')">
-        <div class="phrase-zh">向日葵</div>
-        <div class="phrase-py">Xiàng rì kuí</div>
-        <div class="phrase-th">ทานตะวัน</div>
-      </div>
-      <div class="phrase-row" onclick="copy(this, '花海')">
-        <div class="phrase-zh">花海</div>
-        <div class="phrase-py">Huā hǎi</div>
-        <div class="phrase-th">ทะเลดอกไม้ / ทุ่งดอกไม้ใหญ่</div>
-      </div>
+    <div class="term-list">
+      <div class="term" onclick="c(this)"><span class="term-zh">攻略</span><span class="term-th">ไกด์เที่ยว / how-to</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">一日游</span><span class="term-th">ทริปวันเดียว</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">亲子游</span><span class="term-th">ไปกับลูก/ครอบครัว</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">徒步</span><span class="term-th">เดินป่า</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">骑行</span><span class="term-th">ปั่นจักรยาน</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">机位</span><span class="term-th">มุมถ่ายรูป</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">实拍</span><span class="term-th">ภาพจริง (กรอง AI)</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">避雷</span><span class="term-th">หลีกเลี่ยง/เตือน</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">6月</span><span class="term-th">เดือนมิถุนา (ดูฤดู)</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">花海</span><span class="term-th">ทุ่งดอกไม้</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">日落</span><span class="term-th">พระอาทิตย์ตก</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">美食</span><span class="term-th">อาหารอร่อย</span></div>
+      <div class="term" onclick="c(this)"><span class="term-zh">民宿</span><span class="term-th">B&amp;B / homestay</span></div>
     </div>
   </section>
 
@@ -1009,17 +317,18 @@
       <a href="lijiang.html">Lijiang</a>
       <a href="shangrila.html">Shangri-La</a>
       <a href="kunming.html">Kunming</a>
-      <a href="phrases.html" class="current">Phrases</a>
+      <a href="phrases.html" class="current">Search</a>
     </div>
-    <div class="footer-meta">中文 · Phrases & Search Terms</div>
+    <div class="footer-meta">小红书 · Xiaohongshu Search Terms</div>
   </div>
 </nav>
 
 <script>
-  function copy(el, text) {
+  function c(el) {
+    const text = el.querySelector('.term-zh').textContent.trim();
     navigator.clipboard?.writeText(text);
-    el.classList.add('copied-flash');
-    setTimeout(() => el.classList.remove('copied-flash'), 600);
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 500);
   }
 </script>
 
