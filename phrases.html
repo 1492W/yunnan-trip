@@ -57,8 +57,8 @@
   .term {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    padding: 11px 12px;
+    align-items: center;
+    padding: 12px;
     margin: 0 -12px;
     border-bottom: 1px dashed var(--rule);
     cursor: pointer;
@@ -68,13 +68,26 @@
   }
   .term:hover, .term:active { background: var(--accent-pale); }
   .term:last-child { border-bottom: none; }
+  .term-main {
+    flex: 1;
+    min-width: 0;
+  }
   .term-zh {
     font-family: var(--chinese);
     font-size: 16px;
     color: var(--ink);
-    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .term-py {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 2px;
+    letter-spacing: 0.02em;
   }
   .term-th {
+    flex-shrink: 0;
     font-family: var(--thai);
     font-size: 13px;
     color: var(--ink-light);
@@ -82,6 +95,7 @@
   }
   .term.copied { background: var(--accent) !important; }
   .term.copied .term-zh, .term.copied .term-th { color: white !important; }
+  .term.copied .term-py { color: rgba(255,255,255,0.8) !important; }
   .subhead {
     font-family: var(--sans);
     font-size: 11px;
@@ -131,38 +145,38 @@
 
     <div class="subhead">เขาชางซาน · ดอกไม้</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">苍山 杜鹃</span><span class="term-th">กุหลาบพันปีบนเขา</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">洗马潭 大索道</span><span class="term-th">กระเช้ายอด Ximatan</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">玉带云游路</span><span class="term-th">Cloud Path เส้นเดินป่า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">寂照庵 绣球花</span><span class="term-th">วัดแม่ชี + ไฮเดรนเยีย</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">感通寺</span><span class="term-th">วัด Gantong</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">清碧溪</span><span class="term-th">ลำธาร 3 บ่อน้ำ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">苍山 杜鹃</div><div class="term-py">Cāngshān dùjuān</div></div><span class="term-th">กุหลาบพันปีบนเขา</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">洗马潭 大索道</div><div class="term-py">Xǐmǎtán dà suǒdào</div></div><span class="term-th">กระเช้ายอด Ximatan</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">玉带云游路</div><div class="term-py">Yùdài yúnyóu lù</div></div><span class="term-th">Cloud Path เส้นเดินป่า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">寂照庵 绣球花</div><div class="term-py">Jìzhào'ān xiùqiú huā</div></div><span class="term-th">วัดแม่ชี + ไฮเดรนเยีย</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">感通寺</div><div class="term-py">Gǎntōng sì</div></div><span class="term-th">วัด Gantong</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">清碧溪</div><div class="term-py">Qīngbì xī</div></div><span class="term-th">ลำธาร 3 บ่อน้ำ</span></div>
     </div>
 
     <div class="subhead">เอ๋อไห่ + รอบทะเลสาบ</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">洱海 骑行</span><span class="term-th">ปั่นรอบเอ๋อไห่</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">环洱海</span><span class="term-th">รอบเอ๋อไห่</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">喜洲古镇</span><span class="term-th">หมู่บ้านชาวไป๋</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">双廊</span><span class="term-th">หมู่บ้านริมน้ำ</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">海舌公园</span><span class="term-th">แหลม Hai She</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">小普陀</span><span class="term-th">เกาะวัดกลางน้ำ</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">才村</span><span class="term-th">Caicun (ที่พักริมน้ำ)</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">周城 扎染</span><span class="term-th">Zhoucheng + tie-dye</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">洱海 骑行</div><div class="term-py">Ěrhǎi qíxíng</div></div><span class="term-th">ปั่นรอบเอ๋อไห่</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">环洱海</div><div class="term-py">Huán Ěrhǎi</div></div><span class="term-th">รอบเอ๋อไห่</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">喜洲古镇</div><div class="term-py">Xǐzhōu gǔzhèn</div></div><span class="term-th">หมู่บ้านชาวไป๋</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">双廊</div><div class="term-py">Shuānglàng</div></div><span class="term-th">หมู่บ้านริมน้ำ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">海舌公园</div><div class="term-py">Hǎishé gōngyuán</div></div><span class="term-th">แหลม Hai She</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">小普陀</div><div class="term-py">Xiǎo Pǔtuó</div></div><span class="term-th">เกาะวัดกลางน้ำ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">才村</div><div class="term-py">Cáicūn</div></div><span class="term-th">Caicun (ที่พักริมน้ำ)</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">周城 扎染</div><div class="term-py">Zhōuchéng zārǎn</div></div><span class="term-th">Zhoucheng + tie-dye</span></div>
     </div>
 
     <div class="subhead">เมืองเก่า + วัด</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">大理古城</span><span class="term-th">เมืองเก่า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">崇圣寺三塔</span><span class="term-th">สามเจดีย์</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">猫猫花园</span><span class="term-th">สวนไฮเดรนเยีย</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">大理古城</div><div class="term-py">Dàlǐ gǔchéng</div></div><span class="term-th">เมืองเก่า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">崇圣寺三塔</div><div class="term-py">Chóngshèngsì sān tǎ</div></div><span class="term-th">สามเจดีย์</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">猫猫花园</div><div class="term-py">Māomāo huāyuán</div></div><span class="term-th">สวนไฮเดรนเยีย</span></div>
     </div>
 
     <div class="subhead">เช่ารถ + การเดินทาง</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">大理 电动车租赁</span><span class="term-th">เช่ามอเตอร์ไซค์ไฟฟ้า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">百客屋</span><span class="term-th">Baikewu ร้านเช่า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">大理 包车</span><span class="term-th">เหมารถ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">大理 电动车租赁</div><div class="term-py">Dàlǐ diàndòngchē zūlìn</div></div><span class="term-th">เช่ามอเตอร์ไซค์ไฟฟ้า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">百客屋</div><div class="term-py">Bǎikèwū</div></div><span class="term-th">Baikewu ร้านเช่า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">大理 包车</div><div class="term-py">Dàlǐ bāochē</div></div><span class="term-th">เหมารถ</span></div>
     </div>
   </section>
 
@@ -172,36 +186,36 @@
 
     <div class="subhead">ภูเขาหิมะมังกรหยก</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">玉龙雪山 牦牛坪</span><span class="term-th">Maoniuping ทุ่งหญ้า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">蓝月谷</span><span class="term-th">Blue Moon Valley</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">云杉坪</span><span class="term-th">Yunshanping</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">玉龙雪山 冰川公园</span><span class="term-th">Glacier Park 4,680ม.</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">绿绒蒿 玉龙雪山</span><span class="term-th">Blue Poppy ดอกหายาก</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">高山杜鹃</span><span class="term-th">กุหลาบพันปีบนสูง</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">玉龙雪山 牦牛坪</div><div class="term-py">Yùlóng xuěshān Máoniúpíng</div></div><span class="term-th">Maoniuping ทุ่งหญ้า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">蓝月谷</div><div class="term-py">Lán yuè gǔ</div></div><span class="term-th">Blue Moon Valley</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">云杉坪</div><div class="term-py">Yúnshānpíng</div></div><span class="term-th">Yunshanping</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">玉龙雪山 冰川公园</div><div class="term-py">Yùlóng xuěshān bīngchuān gōngyuán</div></div><span class="term-th">Glacier Park 4,680ม.</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">绿绒蒿 玉龙雪山</div><div class="term-py">Lǜrónghāo Yùlóng xuěshān</div></div><span class="term-th">Blue Poppy ดอกหายาก</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">高山杜鹃</div><div class="term-py">Gāoshān dùjuān</div></div><span class="term-th">กุหลาบพันปีบนสูง</span></div>
     </div>
 
     <div class="subhead">เมืองเก่า + รอบเมือง</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">丽江古城</span><span class="term-th">เมืองเก่าลี่เจียง</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">束河古镇</span><span class="term-th">Shuhe เก่าน่าพัก</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">白沙古镇</span><span class="term-th">Baisha เก่าแก่ที่สุด</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">黑龙潭</span><span class="term-th">บ่อสะท้อนภูเขาหิมะ</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">狮子山</span><span class="term-th">Lion Hill จุดชมเมือง</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">丽江古城</div><div class="term-py">Lìjiāng gǔchéng</div></div><span class="term-th">เมืองเก่าลี่เจียง</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">束河古镇</div><div class="term-py">Shùhé gǔzhèn</div></div><span class="term-th">Shuhe เก่าน่าพัก</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">白沙古镇</div><div class="term-py">Báishā gǔzhèn</div></div><span class="term-th">Baisha เก่าแก่ที่สุด</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">黑龙潭</div><div class="term-py">Hēilóng tán</div></div><span class="term-th">บ่อสะท้อนภูเขาหิมะ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">狮子山</div><div class="term-py">Shīzi shān</div></div><span class="term-th">Lion Hill จุดชมเมือง</span></div>
     </div>
 
     <div class="subhead">เดินป่า + hidden gem</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">文海</span><span class="term-th">Wenhai ทะเลสาบฤดูกาล</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">九子海</span><span class="term-th">Jiuzihai ทุ่งหญ้า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">拉市海 骑马</span><span class="term-th">Lashihai ขี่ม้า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">玉湖村</span><span class="term-th">Yuhu Village</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">文海</div><div class="term-py">Wénhǎi</div></div><span class="term-th">Wenhai ทะเลสาบฤดูกาล</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">九子海</div><div class="term-py">Jiǔzǐhǎi</div></div><span class="term-th">Jiuzihai ทุ่งหญ้า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">拉市海 骑马</div><div class="term-py">Lāshìhǎi qímǎ</div></div><span class="term-th">Lashihai ขี่ม้า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">玉湖村</div><div class="term-py">Yùhú cūn</div></div><span class="term-th">Yuhu Village</span></div>
     </div>
 
     <div class="subhead">Tiger Leaping Gorge (เก็บไว้คราวหน้า)</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">虎跳峡 徒步</span><span class="term-th">เดินป่า TLG</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">虎跳峡 高路</span><span class="term-th">High Trail</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">28道拐</span><span class="term-th">28 Bends</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">虎跳峡 徒步</div><div class="term-py">Hǔtiàoxiá túbù</div></div><span class="term-th">เดินป่า TLG</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">虎跳峡 高路</div><div class="term-py">Hǔtiàoxiá gāolù</div></div><span class="term-th">High Trail</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">28道拐</div><div class="term-py">Èrshíbā dào guǎi</div></div><span class="term-th">28 Bends</span></div>
     </div>
   </section>
 
@@ -211,28 +225,28 @@
 
     <div class="subhead">ธรรมชาติ · ทุ่งหญ้า</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">普达措 一日游</span><span class="term-th">Pudacuo ทั้งวัน</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">属都湖</span><span class="term-th">Shudu Lake</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">碧塔海</span><span class="term-th">Bita Lake</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">纳帕海 骑马</span><span class="term-th">Napa Lake ขี่ม้า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">依拉草原</span><span class="term-th">Yila Grassland</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">碧沽天池 6月</span><span class="term-th">Bigu Tianchi + กุหลาบพันปี</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">石卡雪山</span><span class="term-th">Shika Snow Mountain</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">普达措 一日游</div><div class="term-py">Pǔdácuò yírì yóu</div></div><span class="term-th">Pudacuo ทั้งวัน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">属都湖</div><div class="term-py">Shǔdū hú</div></div><span class="term-th">Shudu Lake</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">碧塔海</div><div class="term-py">Bìtǎ hǎi</div></div><span class="term-th">Bita Lake</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">纳帕海 骑马</div><div class="term-py">Nàpàhǎi qímǎ</div></div><span class="term-th">Napa Lake ขี่ม้า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">依拉草原</div><div class="term-py">Yīlā cǎoyuán</div></div><span class="term-th">Yila Grassland</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">碧沽天池 6月</div><div class="term-py">Bìgū tiānchí liù yuè</div></div><span class="term-th">Bigu Tianchi + กุหลาบพันปี</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">石卡雪山</div><div class="term-py">Shíkǎ xuěshān</div></div><span class="term-th">Shika Snow Mountain</span></div>
     </div>
 
     <div class="subhead">วัฒนธรรมทิเบต</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">松赞林寺</span><span class="term-th">Songzanlin วัดใหญ่</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">独克宗古城</span><span class="term-th">Dukezong + กังหันมนต์</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">藏餐</span><span class="term-th">อาหารทิเบต</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">哈姆谷村</span><span class="term-th">หมู่บ้านทิเบต Hamugu</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">松赞林寺</div><div class="term-py">Sōngzànlín sì</div></div><span class="term-th">Songzanlin วัดใหญ่</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">独克宗古城</div><div class="term-py">Dúkèzōng gǔchéng</div></div><span class="term-th">Dukezong + กังหันมนต์</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">藏餐</div><div class="term-py">Zàng cān</div></div><span class="term-th">อาหารทิเบต</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">哈姆谷村</div><div class="term-py">Hāmǔgǔ cūn</div></div><span class="term-th">หมู่บ้านทิเบต Hamugu</span></div>
     </div>
 
     <div class="subhead">ไกลออกไป</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">梅里雪山</span><span class="term-th">Meili Snow Mountain</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">雨崩村</span><span class="term-th">Yubeng Village trek</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">飞来寺 日照金山</span><span class="term-th">Feilai วิวภูเขาทอง</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">梅里雪山</div><div class="term-py">Méilǐ xuěshān</div></div><span class="term-th">Meili Snow Mountain</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">雨崩村</div><div class="term-py">Yǔbēng cūn</div></div><span class="term-th">Yubeng Village trek</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">飞来寺 日照金山</div><div class="term-py">Fēilái sì rìzhào jīnshān</div></div><span class="term-th">Feilai วิวภูเขาทอง</span></div>
     </div>
   </section>
 
@@ -242,45 +256,45 @@
 
     <div class="subhead">ในเมือง</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">翠湖公园</span><span class="term-th">Green Lake</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">圆通寺</span><span class="term-th">วัด Yuantong</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">昆明老街</span><span class="term-th">Old Street</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">金马碧鸡坊</span><span class="term-th">ซุ้มประตู</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">文林街 咖啡</span><span class="term-th">Wenlin คาเฟ่</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">云南省博物馆</span><span class="term-th">พิพิธภัณฑ์ยูนนาน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">翠湖公园</div><div class="term-py">Cuìhú gōngyuán</div></div><span class="term-th">Green Lake</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">圆通寺</div><div class="term-py">Yuántōng sì</div></div><span class="term-th">วัด Yuantong</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">昆明老街</div><div class="term-py">Kūnmíng lǎojiē</div></div><span class="term-th">Old Street</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">金马碧鸡坊</div><div class="term-py">Jīnmǎ Bìjī fāng</div></div><span class="term-th">ซุ้มประตู</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">文林街 咖啡</div><div class="term-py">Wénlín jiē kāfēi</div></div><span class="term-th">Wenlin คาเฟ่</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">云南省博物馆</div><div class="term-py">Yúnnán shěng bówùguǎn</div></div><span class="term-th">พิพิธภัณฑ์ยูนนาน</span></div>
     </div>
 
     <div class="subhead">เตียนฉือ + ปั่นจักรยาน</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">滇池 一日游</span><span class="term-th">เตียนฉือทั้งวัน</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">海埂大坝</span><span class="term-th">Haigeng Dam</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">西山 龙门</span><span class="term-th">Western Hills + Dragon Gate</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">云南民族村</span><span class="term-th">หมู่บ้านชนเผ่า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">环滇池骑行</span><span class="term-th">ปั่นรอบเตียนฉือ</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">滇池绿道</span><span class="term-th">Greenway</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">草海绿道</span><span class="term-th">Caohai loop</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">77单车</span><span class="term-th">ร้านเช่าจักรยาน 77</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">滇池 一日游</div><div class="term-py">Diānchí yírì yóu</div></div><span class="term-th">เตียนฉือทั้งวัน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">海埂大坝</div><div class="term-py">Hǎigěng dàbà</div></div><span class="term-th">Haigeng Dam</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">西山 龙门</div><div class="term-py">Xīshān Lóngmén</div></div><span class="term-th">Western Hills + Dragon Gate</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">云南民族村</div><div class="term-py">Yúnnán mínzú cūn</div></div><span class="term-th">หมู่บ้านชนเผ่า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">环滇池骑行</div><div class="term-py">Huán Diānchí qíxíng</div></div><span class="term-th">ปั่นรอบเตียนฉือ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">滇池绿道</div><div class="term-py">Diānchí lǜdào</div></div><span class="term-th">Greenway</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">草海绿道</div><div class="term-py">Cǎohǎi lǜdào</div></div><span class="term-th">Caohai loop</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">77单车</div><div class="term-py">Qīqī dānchē</div></div><span class="term-th">ร้านเช่าจักรยาน 77</span></div>
     </div>
 
     <div class="subhead">Day trip</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">石林</span><span class="term-th">Stone Forest</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">东川红土地</span><span class="term-th">Red Land</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">建水古城</span><span class="term-th">Jianshui เมืองโบราณ</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">抚仙湖</span><span class="term-th">Fuxian Lake</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">九乡风景区</span><span class="term-th">Jiuxiang Caves</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">轿子雪山</span><span class="term-th">Jiaozi Snow Mountain</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">元阳梯田</span><span class="term-th">Yuanyang นาขั้นบันได</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">安宁温泉</span><span class="term-th">Anning Hot Spring</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">石林</div><div class="term-py">Shílín</div></div><span class="term-th">Stone Forest</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">东川红土地</div><div class="term-py">Dōngchuān hóng tǔdì</div></div><span class="term-th">Red Land</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">建水古城</div><div class="term-py">Jiànshuǐ gǔchéng</div></div><span class="term-th">Jianshui เมืองโบราณ</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">抚仙湖</div><div class="term-py">Fǔxiānhú</div></div><span class="term-th">Fuxian Lake</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">九乡风景区</div><div class="term-py">Jiǔxiāng fēngjǐng qū</div></div><span class="term-th">Jiuxiang Caves</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">轿子雪山</div><div class="term-py">Jiàozi xuěshān</div></div><span class="term-th">Jiaozi Snow Mountain</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">元阳梯田</div><div class="term-py">Yuányáng tītián</div></div><span class="term-th">Yuanyang นาขั้นบันได</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">安宁温泉</div><div class="term-py">Ānníng wēnquán</div></div><span class="term-th">Anning Hot Spring</span></div>
     </div>
 
     <div class="subhead">อาหาร · ตลาด</div>
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">昆明 野生菌</span><span class="term-th">เห็ดป่า (มิ.ย.-ก.ย.)</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">过桥米线</span><span class="term-th">ก๋วยเตี๋ยวข้ามสะพาน</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">汽锅鸡</span><span class="term-th">Steam Pot Chicken</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">斗南花市</span><span class="term-th">ตลาดดอกไม้</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">云南咖啡</span><span class="term-th">กาแฟยูนนาน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">昆明 野生菌</div><div class="term-py">Kūnmíng yěshēng jūn</div></div><span class="term-th">เห็ดป่า (มิ.ย.-ก.ย.)</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">过桥米线</div><div class="term-py">Guòqiáo mǐxiàn</div></div><span class="term-th">ก๋วยเตี๋ยวข้ามสะพาน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">汽锅鸡</div><div class="term-py">Qìguō jī</div></div><span class="term-th">Steam Pot Chicken</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">斗南花市</div><div class="term-py">Dòunán huāshì</div></div><span class="term-th">ตลาดดอกไม้</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">云南咖啡</div><div class="term-py">Yúnnán kāfēi</div></div><span class="term-th">กาแฟยูนนาน</span></div>
     </div>
   </section>
 
@@ -290,19 +304,19 @@
     <p class="section-subtitle">ใส่ท้ายชื่อสถานที่เพื่อหาประเภทโพสต์ที่ต้องการ</p>
 
     <div class="term-list">
-      <div class="term" onclick="c(this)"><span class="term-zh">攻略</span><span class="term-th">ไกด์เที่ยว / how-to</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">一日游</span><span class="term-th">ทริปวันเดียว</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">亲子游</span><span class="term-th">ไปกับลูก/ครอบครัว</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">徒步</span><span class="term-th">เดินป่า</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">骑行</span><span class="term-th">ปั่นจักรยาน</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">机位</span><span class="term-th">มุมถ่ายรูป</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">实拍</span><span class="term-th">ภาพจริง (กรอง AI)</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">避雷</span><span class="term-th">หลีกเลี่ยง/เตือน</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">6月</span><span class="term-th">เดือนมิถุนา (ดูฤดู)</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">花海</span><span class="term-th">ทุ่งดอกไม้</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">日落</span><span class="term-th">พระอาทิตย์ตก</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">美食</span><span class="term-th">อาหารอร่อย</span></div>
-      <div class="term" onclick="c(this)"><span class="term-zh">民宿</span><span class="term-th">B&amp;B / homestay</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">攻略</div><div class="term-py">Gōnglüè</div></div><span class="term-th">ไกด์เที่ยว / how-to</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">一日游</div><div class="term-py">Yírì yóu</div></div><span class="term-th">ทริปวันเดียว</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">亲子游</div><div class="term-py">Qīnzǐ yóu</div></div><span class="term-th">ไปกับลูก/ครอบครัว</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">徒步</div><div class="term-py">Túbù</div></div><span class="term-th">เดินป่า</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">骑行</div><div class="term-py">Qíxíng</div></div><span class="term-th">ปั่นจักรยาน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">机位</div><div class="term-py">Jīwèi</div></div><span class="term-th">มุมถ่ายรูป</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">实拍</div><div class="term-py">Shípāi</div></div><span class="term-th">ภาพจริง (กรอง AI)</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">避雷</div><div class="term-py">Bìléi</div></div><span class="term-th">หลีกเลี่ยง/เตือน</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">6月</div><div class="term-py">Liù yuè</div></div><span class="term-th">เดือนมิถุนา (ดูฤดู)</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">花海</div><div class="term-py">Huāhǎi</div></div><span class="term-th">ทุ่งดอกไม้</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">日落</div><div class="term-py">Rìluò</div></div><span class="term-th">พระอาทิตย์ตก</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">美食</div><div class="term-py">Měishí</div></div><span class="term-th">อาหารอร่อย</span></div>
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">民宿</div><div class="term-py">Mínsù</div></div><span class="term-th">B&amp;B / homestay</span></div>
     </div>
   </section>
 
