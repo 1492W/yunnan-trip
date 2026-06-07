@@ -254,6 +254,151 @@
     border-color: var(--ink);
   }
 
+  .budget-overview {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+
+  .budget-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--rule);
+  }
+
+  .budget-row:last-child {
+    border-bottom: none;
+    padding-top: 16px;
+    margin-top: 4px;
+    border-top: 2px solid var(--ink);
+  }
+
+  .budget-row-label {
+    font-family: var(--thai);
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .budget-row-value {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .budget-row:last-child .budget-row-label {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 15px;
+  }
+
+  .budget-row:last-child .budget-row-value {
+    font-size: 24px;
+  }
+
+  .category-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+
+  .category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  .category-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .category-total {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .category-bar {
+    height: 8px;
+    background: var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 10px 0;
+    display: flex;
+  }
+
+  .category-bar-paid {
+    height: 100%;
+    background: var(--hub);
+  }
+
+  .category-bar-est {
+    height: 100%;
+    background: var(--lijiang-soft);
+    opacity: 0.6;
+  }
+
+  .category-breakdown {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--thai);
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-top: 6px;
+  }
+
+  .category-breakdown strong {
+    color: var(--ink);
+  }
+
+  .category-items {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .budget-legend {
+    display: flex;
+    gap: 16px;
+    margin: 12px 0 20px;
+    font-family: var(--thai);
+    font-size: 12px;
+    color: var(--ink-soft);
+  }
+
+  .legend-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .legend-dot.paid {
+    background: var(--hub);
+  }
+
+  .legend-dot.est {
+    background: var(--lijiang-soft);
+    opacity: 0.6;
+  }
+
   .priority-tag {
     display: inline-block;
     font-family: var(--sans);
@@ -985,6 +1130,171 @@
       <li>Print/save itinerary คร่าวๆ (สำหรับ ตม. จีน)</li>
       <li>Save URL เว็บทริปนี้ in browser bookmarks</li>
     </ul>
+  </section>
+
+  <!-- BUDGET -->
+  <section class="section">
+    <div class="section-label">— BUDGET</div>
+    <h2 class="section-title">งบประมาณ <span class="chinese">预算</span></h2>
+    <p class="section-subtitle">ค่าใช้จ่ายจริง + ประมาณการ · 3 คน · 24 วัน</p>
+
+    <div class="budget-overview">
+      <div class="budget-row">
+        <div class="budget-row-label">✅ จ่ายแล้ว/Lock-in</div>
+        <div class="budget-row-value" style="color: var(--hub);">฿65,021</div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-row-label">📋 ประมาณการที่เหลือ</div>
+        <div class="budget-row-value" style="color: var(--lijiang-soft);">~฿89,500</div>
+      </div>
+      <div class="budget-row">
+        <div class="budget-row-label">รวมทั้งทริป (ประมาณการ)</div>
+        <div class="budget-row-value">~฿154,500</div>
+      </div>
+    </div>
+
+    <p class="section-subtitle" style="margin-top: 20px; margin-bottom: 12px;">
+      <strong>~฿51,500 / คน</strong> · ~฿2,150/คน/วัน · 3 คน รวม
+    </p>
+
+    <div class="budget-legend">
+      <span><span class="legend-dot paid"></span>จ่ายแล้ว</span>
+      <span><span class="legend-dot est"></span>ประมาณการ</span>
+    </div>
+
+    <!-- HOTEL CATEGORY -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-title">🏨 ที่พัก</div>
+        <div class="category-total">฿32,735</div>
+      </div>
+      <div class="category-bar">
+        <div class="category-bar-paid" style="width: 92.4%;"></div>
+        <div class="category-bar-est" style="width: 7.6%;"></div>
+      </div>
+      <div class="category-breakdown">
+        <span>จ่าย <strong>฿30,235</strong></span>
+        <span>ประมาณ <strong>฿2,500</strong></span>
+      </div>
+      <div class="category-items">
+        ✅ Homeinn neo Kunming (1 คืน) · ฿1,467.60<br>
+        ✅ Meet · Muyu Yanyan Dali (3 คืน) · ฿3,529.29<br>
+        ✅ Yunman Mu Lijiang (2 คืน) · ฿3,409.98<br>
+        ✅ Shanyue Yunjv Shangri-La (3 คืน) · ฿4,560.84<br>
+        ✅ Yulinlin Kunming Part 1 (5 คืน) · ฿7,375<br>
+        ✅ Yulinlin Kunming Part 2 (6 คืน) · ฿9,893.14<br>
+        📋 Weekend Gap Jul 3-5 (2 คืน) · ~฿2,500
+      </div>
+    </div>
+
+    <!-- TRANSPORT CATEGORY -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-title">🚄 เดินทาง</div>
+        <div class="category-total">~฿46,500</div>
+      </div>
+      <div class="category-bar">
+        <div class="category-bar-paid" style="width: 74.8%;"></div>
+        <div class="category-bar-est" style="width: 25.2%;"></div>
+      </div>
+      <div class="category-breakdown">
+        <span>จ่าย <strong>฿34,785</strong></span>
+        <span>ประมาณ <strong>~฿11,700</strong></span>
+      </div>
+      <div class="category-items">
+        ✅ Flight CNX↔KMG (3 คน) · ฿32,970<br>
+        ✅ Train D8692 Kunming→Dali · ฿1,815<br>
+        📋 Train Dali→Lijiang · ~฿1,100<br>
+        📋 Train Lijiang→Shangri-La · ~฿1,100<br>
+        📋 Train Shangri-La→Kunming · ~฿3,800<br>
+        📋 Weekend Kunming↔Dali (ถ้าทำ) · ~฿2,000<br>
+        📋 Didi/Bus/Taxi ตลอด 24 วัน · ~฿3,700
+      </div>
+    </div>
+
+    <!-- FOOD CATEGORY -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-title">🍜 อาหาร</div>
+        <div class="category-total">~฿36,000</div>
+      </div>
+      <div class="category-bar">
+        <div class="category-bar-est" style="width: 100%;"></div>
+      </div>
+      <div class="category-breakdown">
+        <span>ประมาณ <strong>฿1,500/วัน × 24 วัน</strong></span>
+        <span>= ฿500/คน/วัน · ¥100/วัน</span>
+      </div>
+      <div class="category-items">
+        🥐 อาหารเช้า · ~฿200/วัน (ก๋วยเตี๋ยว ซาลาเปา)<br>
+        🍱 อาหารกลางวัน · ~฿500/วัน<br>
+        🍲 อาหารเย็น · ~฿700/วัน (เผื่อร้านดีๆ)<br>
+        ☕ ของกินเล่น · ~฿100/วัน<br>
+        <em>หมายเหตุ: บางวันใช้น้อย (กินในโรงแรม) · บางวันใช้มาก (ร้านดัง)</em>
+      </div>
+    </div>
+
+    <!-- ENTRANCE/ACTIVITIES CATEGORY -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-title">🎫 ค่าเข้าสถานที่ + ทัวร์</div>
+        <div class="category-total">~฿27,000</div>
+      </div>
+      <div class="category-bar">
+        <div class="category-bar-est" style="width: 100%;"></div>
+      </div>
+      <div class="category-breakdown">
+        <span>ประมาณ <strong>฿27,000</strong></span>
+        <span>ยังไม่จอง/จ่าย</span>
+      </div>
+      <div class="category-items">
+        <strong>ทัวร์ที่ต้องจอง:</strong><br>
+        📋 Pudacuo VIP Package · ฿3,400<br>
+        📋 TLG + Haba + Baishuitai Day Tour · ฿3,640<br><br>
+        <strong>ตั๋วเข้าสถานที่ (จ่ายปลายทาง):</strong><br>
+        🏔️ Cangshan Cable Car · ~฿3,500<br>
+        🏔️ Yulong Snow Mountain (entry + cable + shuttle) · ~฿2,800<br>
+        🏛️ Three Pagodas · ~฿1,500<br>
+        🐉 Black Dragon Pool · ~฿750<br>
+        🛕 Songzanlin Monastery · ~฿1,350<br>
+        🏯 Old Town fees (Dali · Lijiang) · ~฿1,500<br>
+        🌊 Erhai Loop (charter car + small fees) · ~฿3,000<br>
+        🪜 TLG lift · ~฿1,275<br>
+        🌲 Stone Forest day trip (ถ้าทำ) · ~฿1,950<br>
+        🏞️ Kunming attractions (Western Hills, etc.) · ~฿1,500<br>
+        🎨 อื่นๆ + Erhai stops · ~฿2,335
+      </div>
+    </div>
+
+    <!-- OTHERS CATEGORY -->
+    <div class="category-card">
+      <div class="category-header">
+        <div class="category-title">📦 อื่นๆ</div>
+        <div class="category-total">~฿12,300</div>
+      </div>
+      <div class="category-bar">
+        <div class="category-bar-est" style="width: 100%;"></div>
+      </div>
+      <div class="category-breakdown">
+        <span>ประมาณ <strong>฿12,300</strong></span>
+        <span>ประกัน · ของฝาก · misc</span>
+      </div>
+      <div class="category-items">
+        🏥 ประกันเดินทาง 24 วัน (3 คน) · ~฿3,500<br>
+        📱 SIM card / eSIM data · ~฿500<br>
+        🎁 ของฝาก (ชา · ผ้าทิเบต · ลูกหิน) · ~฿4,000<br>
+        💵 ทิปไกด์ + คนขับ · ~฿1,500<br>
+        🚨 ฉุกเฉิน / contingency · ~฿2,500<br>
+        💳 ATM fees + currency exchange · ~฿300
+      </div>
+    </div>
+
+    <!-- CASH NEEDS -->
+    <div class="total-box" style="margin-top: 24px;">
+      <div class="total-label">— CASH IN CHINA —</div>
+      <div class="total-amount">~¥18,000 - 22,000</div>
+      <div class="total-note">เงินที่ต้องใช้ในจีน (รถไฟ · อาหาร · เข้าชม · ทิป · ของฝาก) · 70-80% ใช้ผ่าน Alipay/WeChat · เตรียมเงินสด ¥2,000 พอ</div>
+    </div>
   </section>
 
   <!-- PAYMENT SCHEDULE -->
