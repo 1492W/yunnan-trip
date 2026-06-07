@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookings & Logistics · Yunnan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  :root {
+    --accent: #2C3E50;
+    --accent-soft: #5D7593;
+    --accent-pale: #ECF0F5;
+  }
+
+  .booking-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .booking-card.confirmed {
+    border-left: 4px solid var(--hub);
+  }
+
+  .booking-card.pending {
+    border-left: 4px solid #C8553D;
+    background: #FAF5F2;
+  }
+
+  .booking-card.paid {
+    border-left: 4px solid #2C7A4B;
+  }
+
+  .booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .booking-title {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .booking-status {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .booking-status.confirmed-tag {
+    background: var(--hub-pale);
+    color: var(--hub);
+  }
+
+  .booking-status.paid-tag {
+    background: #E0EFE5;
+    color: #2C7A4B;
+  }
+
+  .booking-status.pending-tag {
+    background: #F8E1D9;
+    color: #C8553D;
+  }
+
+  .booking-subtitle {
+    font-family: var(--thai);
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .booking-chinese {
+    font-family: var(--chinese);
+    font-size: 13px;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+  }
+
+  .booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+    padding: 14px;
+    background: var(--paper-warm);
+    border-radius: 6px;
+  }
+
+  .booking-detail-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+    margin-bottom: 4px;
+  }
+
+  .booking-detail-value {
+    font-family: var(--thai);
+    font-size: 14px;
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .booking-detail-value.mono {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+  }
+
+  .booking-note {
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--rule);
+    line-height: 1.6;
+  }
+
+  .booking-note strong {
+    color: var(--ink);
+  }
+
+  .checklist {
+    list-style: none;
+    padding: 0;
+  }
+
+  .checklist li {
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--rule);
+    font-family: var(--thai);
+    font-size: 15px;
+    color: var(--ink);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+  }
+
+  .checklist li::before {
+    content: "☐";
+    color: var(--ink-light);
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .checklist li.done::before {
+    content: "☑";
+    color: var(--hub);
+  }
+
+  .checklist li.done {
+    color: var(--ink-light);
+    text-decoration: line-through;
+  }
+
+  .priority-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .priority-tag.high {
+    background: #F8E1D9;
+    color: #C8553D;
+  }
+
+  .priority-tag.med {
+    background: #FFF4D6;
+    color: #B98968;
+  }
+
+  .priority-tag.low {
+    background: var(--hub-pale);
+    color: var(--hub);
+  }
+
+  .total-box {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 24px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .total-label {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--paper-warm);
+    margin-bottom: 8px;
+  }
+
+  .total-amount {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .total-note {
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--paper-warm);
+    margin-top: 8px;
+  }
+
+  .timeline-box {
+    border-left: 2px solid var(--rule);
+    padding: 0 0 0 20px;
+    margin-left: 8px;
+  }
+
+  .timeline-event {
+    position: relative;
+    margin-bottom: 18px;
+    padding-left: 4px;
+  }
+
+  .timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -27px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent-soft);
+  }
+
+  .timeline-event.charged::before {
+    background: var(--accent-soft);
+  }
+
+  .timeline-date {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+    margin-bottom: 2px;
+  }
+
+  .timeline-amount {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .timeline-desc {
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+
+  .contact-card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+  }
+
+  .contact-name {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .contact-info {
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .contact-info a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-eyebrow">— REFERENCE · ADMIN —</div>
+  <div class="hero-chinese">行程管理</div>
+  <div class="hero-pinyin">Xíngchéng guǎnlǐ</div>
+  <h1 class="hero-name">Bookings & Logistics</h1>
+  <div class="hero-dates">
+    <span>BOOKINGS</span>
+    <span class="dot"></span>
+    <span>TASKS</span>
+    <span class="dot"></span>
+    <span>CONTACTS</span>
+  </div>
+  <p class="hero-tagline">รวมข้อมูลการจอง · งานที่ต้องทำก่อนเดินทาง · เบอร์โทรสำคัญ · กำหนดการจ่ายเงิน</p>
+</header>
+
+<main class="container">
+
+  <!-- OVERVIEW -->
+  <section class="section">
+    <div class="section-label">— SUMMARY</div>
+    <h2 class="section-title">ภาพรวม <span class="chinese">概况</span></h2>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">24</div>
+        <div class="stat-label">Days total</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Travelers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">6/11</div>
+        <div class="stat-label">Bookings done</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">~₿44K</div>
+        <div class="stat-label">Spent so far</div>
+      </div>
+    </div>
+
+    <div class="total-box">
+      <div class="total-label">— TRIP DATES —</div>
+      <div class="total-amount">19 Jun → 11 Jul 2026</div>
+      <div class="total-note">ศ 19 มิ.ย. CNX→KMG · ส 11 ก.ค. KMG→CNX · ภายใน visa-free 30 วัน</div>
+    </div>
+  </section>
+
+  <!-- CONFIRMED BOOKINGS -->
+  <section class="section">
+    <div class="section-label">— CONFIRMED</div>
+    <h2 class="section-title">การจองที่ยืนยันแล้ว <span class="chinese">已订</span></h2>
+    <p class="section-subtitle">เครื่องบิน · รถไฟ · โรงแรม — เรียงตามวันใช้</p>
+
+    <!-- Flight outbound -->
+    <div class="booking-card paid">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">✈️ Flight CNX → KMG</div>
+          <div class="booking-subtitle">ศุกร์ 19 มิ.ย. · 16:10 — 18:55 · 1 ชม. 45 นาที</div>
+        </div>
+        <div class="booking-status paid-tag">PAID</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">FLIGHT</div>
+          <div class="booking-detail-value">China Eastern MU9620</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">AIRCRAFT</div>
+          <div class="booking-detail-value">Boeing 738 · Economy</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿32,970 (รวมขากลับ)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898931637898</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotel Kunming night 1 -->
+    <div class="booking-card confirmed">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Homeinn · neo (Kunming)</div>
+          <div class="booking-subtitle">ศ 19 - ส 20 มิ.ย. · 1 คืน · Beijing Road Railway Station</div>
+          <div class="booking-chinese">如家酒店·neo（昆明北京路火车站店）</div>
+        </div>
+        <div class="booking-status confirmed-tag">PAY LATER</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">CHECK-IN</div>
+          <div class="booking-detail-value">หลัง 14:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿1,467.60</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CHARGE DATE</div>
+          <div class="booking-detail-value">Jun 17 (MasterCard 5100)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898051106875</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ✅ <strong>ติด Kunming Station (เก่า)</strong> — รถไฟ D8692 ออกจากที่นี่ เดินถึงได้ 5-10 นาที<br>
+        ❌ ยกเลิกฟรีก่อน 18:00 Jun 19 · หลังจากนั้น non-refundable
+      </div>
+    </div>
+
+    <!-- Train Kunming to Dali -->
+    <div class="booking-card confirmed">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🚄 Kunming → Dali · D8692</div>
+          <div class="booking-subtitle">ส 20 มิ.ย. · 09:35 — 11:44 · 2 ชม. 9 นาที</div>
+        </div>
+        <div class="booking-status paid-tag">PAID</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">DEPART FROM</div>
+          <div class="booking-detail-value">Kunming Station (昆明站)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">COACH</div>
+          <div class="booking-detail-value">Coach 03 · 2nd class</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">SEATS</div>
+          <div class="booking-detail-value">01A · 01B · 01C</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">¥363 (145+145+73)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">ORDER NO.</div>
+          <div class="booking-detail-value mono">E352921154</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        <strong>ผู้โดยสาร:</strong> ASAVAKOVIT SUPREEDA (01B) · ASAVAKOVIT OHM (01A) · ASAVAKOVIT PORDEE (01C, Child)<br>
+        ⚠️ พกพาสปอร์ตที่ใช้จอง · ไปสถานี 30 นาทีก่อน · รับตั๋วกระดาษที่ Foreign Passport Window
+      </div>
+    </div>
+
+    <!-- Hotel Dali -->
+    <div class="booking-card paid">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Meet · Muyu Yanyan Inn (Dali)</div>
+          <div class="booking-subtitle">ส 20 - อ 23 มิ.ย. · 3 คืน · Dali Ancient City</div>
+          <div class="booking-chinese">Meet·慕屿雲烟客栈（大理古城店）</div>
+        </div>
+        <div class="booking-status paid-tag">PAID</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">CHECK-IN</div>
+          <div class="booking-detail-value">หลัง 14:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CHECK-OUT</div>
+          <div class="booking-detail-value">ก่อน 12:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿3,529.29 (จ่ายแล้ว)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898069371383</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ❌ ยกเลิกฟรีก่อน 18:00 Jun 20 · หลังนั้นค่าธรรมเนียม ฿1,114.52
+      </div>
+    </div>
+
+    <!-- Hotel Lijiang -->
+    <div class="booking-card confirmed">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Yunman Mu Mountain Snow (Lijiang)</div>
+          <div class="booking-subtitle">อ 23 - พฤ 25 มิ.ย. · 2 คืน · Big Waterwheel branch</div>
+          <div class="booking-chinese">雲曼·慕山雪 | 观古城雪山全景宋氏美学度假庭院（丽江大水车店）</div>
+        </div>
+        <div class="booking-status confirmed-tag">PAY LATER</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">CHECK-IN</div>
+          <div class="booking-detail-value">หลัง 15:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CHECK-OUT</div>
+          <div class="booking-detail-value">ก่อน 12:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿3,409.98</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CHARGE DATE</div>
+          <div class="booking-detail-value">Jun 21 (MasterCard 5100)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898069263023</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ❌ ยกเลิกฟรีก่อน 23:59 Jun 23 · view เมืองเก่า + ภูเขาหิมะ
+      </div>
+    </div>
+
+    <!-- Hotel Shangri-La -->
+    <div class="booking-card confirmed">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Shanyue Yunjv (Shangri-La)</div>
+          <div class="booking-subtitle">พฤ 25 - อา 28 มิ.ย. · 3 คืน · Dukezong Dafo Temple</div>
+          <div class="booking-chinese">香格里拉·山悦·云居 | 东方诧寂美学空间（独克宗古城大佛寺店）</div>
+        </div>
+        <div class="booking-status confirmed-tag">PAY LATER</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">CHECK-IN</div>
+          <div class="booking-detail-value">หลัง 14:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CHECK-OUT</div>
+          <div class="booking-detail-value">ก่อน 12:00</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">ADDRESS</div>
+          <div class="booking-detail-value">No. 15, Renda Gallery, Jinlong, Jiantang Town</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898070894273</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ✅ <strong>เดิน 5-10 นาทีถึง East Gate Parking Lot</strong> — Pudacuo VIP pickup<br>
+        ❌ ยกเลิกฟรีก่อน 23:59 Jun 23
+      </div>
+    </div>
+
+    <!-- Return Flight -->
+    <div class="booking-card paid">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">✈️ Flight KMG → CNX (Return)</div>
+          <div class="booking-subtitle">ส 11 ก.ค. · 08:20 — 09:15 · 1 ชม. 55 นาที</div>
+        </div>
+        <div class="booking-status paid-tag">PAID</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">FLIGHT</div>
+          <div class="booking-detail-value">China Eastern MU9639</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">CLASS</div>
+          <div class="booking-detail-value">Economy · Snacks</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">(รวมในขาไป)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">BOOKING NO.</div>
+          <div class="booking-detail-value mono">1688898931637898</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PENDING BOOKINGS -->
+  <section class="section">
+    <div class="section-label">— TO BOOK</div>
+    <h2 class="section-title">ยังไม่ได้จอง <span class="chinese">待订</span></h2>
+    <p class="section-subtitle">เรียงตาม priority — จองให้ครบก่อนเดินทาง</p>
+
+    <!-- Train Dali to Lijiang -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🚄 Dali → Lijiang <span class="priority-tag high">HIGH</span></div>
+          <div class="booking-subtitle">อ 23 มิ.ย. · ~2 ชม. · 12306 หรือ Trip.com</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-note">
+        <strong>เปิดขาย 15 วันล่วงหน้า</strong> — ราคา ~70-90 ¥/คน · จองให้เร็ว เพราะคนเยอะฤดูพีค
+      </div>
+    </div>
+
+    <!-- Train Lijiang to Shangri-La -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🚄 Lijiang → Shangri-La <span class="priority-tag high">HIGH</span></div>
+          <div class="booking-subtitle">พฤ 25 มิ.ย. · ~2 ชม. · 12306 หรือ Trip.com</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-note">
+        ราคา ~70-90 ¥/คน · ใหม่เปิด 2023 · คนนิยมมาก ฤดูพีคหมดเร็ว
+      </div>
+    </div>
+
+    <!-- Train Shangri-La to Kunming -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🚄 Shangri-La → Kunming <span class="priority-tag high">HIGH</span></div>
+          <div class="booking-subtitle">อา 28 มิ.ย. · 13:45 — 18:42 · ~5 ชม.</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-note">
+        ราคา ~250-300 ¥/คน · ผ่านลี่เจียง + ต้าลี่ ลงคุนหมิงเย็น
+      </div>
+    </div>
+
+    <!-- Pudacuo VIP -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🎫 Pudacuo VIP Fast Pass <span class="priority-tag med">MED</span></div>
+          <div class="booking-subtitle">ศ 26 มิ.ย. · Ctrip 携程</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿3,400 (1,133 × 3)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PICKUP</div>
+          <div class="booking-detail-value">Dukezong East Gate</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">INCLUDES</div>
+          <div class="booking-detail-value">Bus + Tickets + Fast Pass + Gift + Tibetan costume</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ค้นใน Ctrip: <strong>普达措 VIP 快速通道</strong> · เลือกวันที่ 26 มิ.ย.
+      </div>
+    </div>
+
+    <!-- TLG Day Tour -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🎫 TLG + Haba + Baishuitai Tour <span class="priority-tag med">MED</span></div>
+          <div class="booking-subtitle">ส 27 มิ.ย. · Trip.com · English guide</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-grid">
+        <div>
+          <div class="booking-detail-label">PRICE</div>
+          <div class="booking-detail-value">฿3,640 (1,213 × 3)</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">PICKUP</div>
+          <div class="booking-detail-value">โรงแรม Shangri-La</div>
+        </div>
+        <div>
+          <div class="booking-detail-label">TIME</div>
+          <div class="booking-detail-value">8:00 - 18:00</div>
+        </div>
+      </div>
+      <div class="booking-note">
+        ค้นใน Trip.com: <strong>Tiger Leaping Gorge Haba White Water Terraces Day Tour</strong>
+      </div>
+    </div>
+
+    <!-- Hotel Kunming 2 weeks -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Kunming 2 weeks <span class="priority-tag med">MED</span></div>
+          <div class="booking-subtitle">อา 28 มิ.ย. - ศ 10 ก.ค. · 13 คืน · ใกล้ที่เรียนภาษา</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-note">
+        คุย AC swap option · พิจารณา 云上四季尚品 ที่ดูไว้ หรือเทียบกับตัวเลือกใกล้โรงเรียน
+      </div>
+    </div>
+
+    <!-- Hotel Kunming last night -->
+    <div class="booking-card pending">
+      <div class="booking-header">
+        <div>
+          <div class="booking-title">🏨 Kunming last night <span class="priority-tag low">LOW</span></div>
+          <div class="booking-subtitle">ศ 10 - ส 11 ก.ค. · 1 คืน · ใกล้สนามบินหรือ Airport Express</div>
+        </div>
+        <div class="booking-status pending-tag">TO BOOK</div>
+      </div>
+      <div class="booking-note">
+        เครื่องบิน 08:20 — ต้องไปสนามบินตี 5-6 · พิจารณาโรงแรมในเมืองที่ใกล้ Metro Line 6 หรือใกล้สนามบิน
+      </div>
+    </div>
+  </section>
+
+  <!-- PRE-TRIP TASKS -->
+  <section class="section">
+    <div class="section-label">— TASKS</div>
+    <h2 class="section-title">งานก่อนเดินทาง <span class="chinese">行前准备</span></h2>
+    <p class="section-subtitle">เช็คลิสต์ที่ต้องทำก่อนวันที่ 19 มิ.ย.</p>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 24px; margin-bottom: 12px; color: var(--ink);">🎯 ต้องทำเร็วๆ นี้</h3>
+    <ul class="checklist">
+      <li>จองรถไฟ Dali → Lijiang (Tue 23 Jun) — 12306 หรือ Trip.com <span class="priority-tag high">HIGH</span></li>
+      <li>จองรถไฟ Lijiang → Shangri-La (Thu 25 Jun) <span class="priority-tag high">HIGH</span></li>
+      <li>จองรถไฟ Shangri-La → Kunming (Sun 28 Jun) <span class="priority-tag high">HIGH</span></li>
+      <li>จอง Pudacuo VIP Package ใน Ctrip <span class="priority-tag med">MED</span></li>
+      <li>จอง TLG Day Tour ใน Trip.com <span class="priority-tag med">MED</span></li>
+      <li>หาและจองโรงแรมคุนหมิง 2 อาทิตย์ <span class="priority-tag med">MED</span></li>
+      <li>จองโรงแรมคุนหมิงคืนสุดท้าย (10-11 ก.ค.) <span class="priority-tag low">LOW</span></li>
+    </ul>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 12px; color: var(--ink);">📋 ตัดสินใจ + ดำเนินการ</h3>
+    <ul class="checklist">
+      <li>ตัดสินใจ: ทำใบขับขี่ชั่วคราวจีนที่ต้าลี่หรือไม่ (Stormline ใช้ได้ แต่ขับเองในจีน)</li>
+      <li>หากตัดสินใจทำ → แปลใบขับขี่ไทยเป็นจีน notarized ที่เชียงใหม่ (First Choice / NPT Notary)</li>
+      <li>ติดต่อโรงเรียนภาษาคุนหมิง — ยืนยันว่าใช้ visa-free 30 วันได้</li>
+      <li>เลือกตัวเลือก Erhai Loop วันที่ 22 มิ.ย.: charter car · sightseeing bus · self-drive</li>
+    </ul>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 12px; color: var(--ink);">📱 เตรียมแอป + เงิน</h3>
+    <ul class="checklist">
+      <li>ติดตั้งและตั้งค่า Alipay (支付宝) — ผูกบัตรเครดิตต่างประเทศ</li>
+      <li>ติดตั้ง WeChat Pay (微信支付) — สำหรับร้านเล็ก</li>
+      <li>ติดตั้ง Amap (高德地图) — แผนที่ + Didi</li>
+      <li>ติดตั้ง Meituan (美团) — ค้นที่กิน · จอง</li>
+      <li>ติดตั้ง Trip.com app + ลงข้อมูล passport ทุกคน</li>
+      <li>ติดตั้ง VPN สำรอง (Google · Line · Facebook ใช้ไม่ได้ในจีน)</li>
+      <li>แลกเงินสด ¥ 1,000-2,000 (เผื่อร้านเล็กไม่รับ QR)</li>
+      <li>ตรวจสอบ MasterCard 5100 มีวงเงิน + bank notify การใช้ในจีน</li>
+    </ul>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 12px; color: var(--ink);">🎒 ของที่ต้องเตรียม</h3>
+    <ul class="checklist">
+      <li>พาสปอร์ตทุกคน — เช็คอายุเหลือ ≥ 6 เดือน</li>
+      <li>BD Stormline jacket + เสื้อแขนยาวบาง + fleece บาง (สำหรับ 3 ภูเขา)</li>
+      <li>ครีมกันแดด SPF 50+ × 3 — สำคัญที่สุดสำหรับภูเขา</li>
+      <li>แว่นกันแดด + หมวก ทุกคน (รวม Pordee)</li>
+      <li>รองเท้าผ้าใบกีฬา (ไม่ใช่ flip flops)</li>
+      <li>ขวดน้ำเปล่า + power bank + adapter จีน (Type A/I)</li>
+      <li>ยาประจำตัว + ยาเม็ดป้องกัน altitude (Diamox optional)</li>
+      <li>กระเป๋าเป้ daypack สำหรับเที่ยวประจำวัน</li>
+    </ul>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 12px; color: var(--ink);">📄 เอกสารพิมพ์/บันทึก</h3>
+    <ul class="checklist">
+      <li>Print/save flight confirmation MU9620 + MU9639</li>
+      <li>Print/save hotel bookings ทั้ง 4 แห่ง (Kunming + Dali + Lijiang + Shangri-La)</li>
+      <li>Print/save train booking D8692</li>
+      <li>Print/save itinerary คร่าวๆ (สำหรับ ตม. จีน)</li>
+      <li>Save URL เว็บทริปนี้ in browser bookmarks</li>
+    </ul>
+  </section>
+
+  <!-- PAYMENT SCHEDULE -->
+  <section class="section">
+    <div class="section-label">— PAYMENT</div>
+    <h2 class="section-title">กำหนดการจ่าย <span class="chinese">付款时间</span></h2>
+    <p class="section-subtitle">เช็ค balance บัตรเครดิตให้พอ</p>
+
+    <div class="timeline-box" style="margin-top: 24px;">
+      <div class="timeline-event charged">
+        <div class="timeline-date">ก่อน 19 มิ.ย. · จ่ายแล้ว</div>
+        <div class="timeline-amount">฿32,970</div>
+        <div class="timeline-desc">เครื่องบิน China Eastern ไป-กลับ</div>
+      </div>
+
+      <div class="timeline-event charged">
+        <div class="timeline-date">ก่อน 19 มิ.ย. · จ่ายแล้ว</div>
+        <div class="timeline-amount">฿3,529.29</div>
+        <div class="timeline-desc">โรงแรม Dali (Meet · Muyu Yanyan)</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">JUN 17 · MasterCard 5100</div>
+        <div class="timeline-amount">฿1,467.60</div>
+        <div class="timeline-desc">โรงแรม Homeinn neo Kunming (คืน 1)</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">JUN 21 · MasterCard 5100</div>
+        <div class="timeline-amount">฿3,409.98</div>
+        <div class="timeline-desc">โรงแรม Lijiang (Yunman Mu Mountain Snow)</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">ที่ Shangri-La · จ่ายปลายทาง</div>
+        <div class="timeline-amount">~฿4,000-5,000</div>
+        <div class="timeline-desc">โรงแรม Shangri-La (Shanyue Yunjv) · 3 คืน</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">จองล่วงหน้า</div>
+        <div class="timeline-amount">฿7,040</div>
+        <div class="timeline-desc">Pudacuo VIP + TLG Day Tour</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">ในจีน · Alipay/WeChat</div>
+        <div class="timeline-amount">~¥5,000-7,000</div>
+        <div class="timeline-desc">รถไฟ + อาหาร + Didi + ตั๋วเข้า + ของฝาก (~฿25,000-35,000)</div>
+      </div>
+
+      <div class="timeline-event">
+        <div class="timeline-date">ในจีน · MasterCard / Alipay</div>
+        <div class="timeline-amount">~฿20,000-30,000</div>
+        <div class="timeline-desc">โรงแรมคุนหมิง 2 อาทิตย์ + คืนสุดท้าย</div>
+      </div>
+    </div>
+
+    <div class="total-box">
+      <div class="total-label">— ESTIMATED TOTAL —</div>
+      <div class="total-amount">~฿95,000 - 115,000</div>
+      <div class="total-note">3 คน · 24 วัน · ~฿32,000-38,000/คน · รวมทุกอย่าง</div>
+    </div>
+  </section>
+
+  <!-- IMPORTANT CONTACTS -->
+  <section class="section">
+    <div class="section-label">— CONTACTS</div>
+    <h2 class="section-title">เบอร์โทรสำคัญ <span class="chinese">重要联系</span></h2>
+    <p class="section-subtitle">เก็บไว้ในมือถือ — เผื่อมีอะไรเกิดขึ้น</p>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 24px; margin-bottom: 16px; color: var(--ink);">🚨 ฉุกเฉิน</h3>
+
+    <div class="contact-card">
+      <div class="contact-name">Royal Thai Embassy Beijing</div>
+      <div class="contact-info">
+        +86 10 8531 8755 (สถานทูตไทย ปักกิ่ง)<br>
+        ฉุกเฉิน: +86 13 9101 7373
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">Royal Thai Consulate Kunming</div>
+      <div class="contact-info">
+        +86 871 6316 8916<br>
+        ใกล้ที่สุดสำหรับยูนนาน
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">ฉุกเฉินในจีน</div>
+      <div class="contact-info">
+        ตำรวจ: 110<br>
+        รถพยาบาล: 120<br>
+        ดับเพลิง: 119
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 16px; color: var(--ink);">💳 บัตรเครดิต</h3>
+
+    <div class="contact-card">
+      <div class="contact-name">MasterCard Emergency (Worldwide)</div>
+      <div class="contact-info">
+        +1 636 722 7111 (โทร collect ได้)<br>
+        บัตรหายในจีน: 10 800 110 7309 (toll-free จาก China Telecom)
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 16px; color: var(--ink);">🏨 โรงแรม</h3>
+
+    <div class="contact-card">
+      <div class="contact-name">Homeinn · neo (Kunming Night 1)</div>
+      <div class="contact-info">
+        Booking 1688898051106875 · ติดต่อผ่าน Trip.com app
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">Meet · Muyu Yanyan (Dali)</div>
+      <div class="contact-info">
+        Booking 1688898069371383 · ติดต่อผ่าน Trip.com app
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">Yunman Mu Mountain Snow (Lijiang)</div>
+      <div class="contact-info">
+        Booking 1688898069263023 · ติดต่อผ่าน Trip.com app
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">Shanyue Yunjv (Shangri-La)</div>
+      <div class="contact-info">
+        Booking 1688898070894273 · ติดต่อผ่าน Trip.com app
+      </div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 32px; margin-bottom: 16px; color: var(--ink);">📱 ติดต่อ Customer Service</h3>
+
+    <div class="contact-card">
+      <div class="contact-name">Trip.com Customer Service</div>
+      <div class="contact-info">
+        Thailand: +66 (0) 2 460 6480<br>
+        Global: +86 21 3406 4880<br>
+        ตอบไทยได้ผ่าน app chat
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">China Eastern Airlines</div>
+      <div class="contact-info">
+        Customer service: 95530 (จากจีน)<br>
+        Thailand: +66 2 235 4234
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-name">12306 Railway (ทางการ)</div>
+      <div class="contact-info">
+        Hotline: 12306 (จากจีน)<br>
+        ภาษาอังกฤษ: กด 1 หลังเชื่อมต่อ
+      </div>
+    </div>
+  </section>
+
+  <!-- NAV -->
+  <nav class="bottom-nav">
+    <a href="index.html">← Home</a>
+    <a href="dali.html">Dali</a>
+    <a href="lijiang.html">Lijiang</a>
+    <a href="shangrila.html">Shangri-La</a>
+    <a href="kunming.html">Kunming</a>
+    <a href="phrases.html">Search</a>
+  </nav>
+
+</main>
+
+<footer class="footer">
+  <p>云南 · Yúnnán · ยูนนาน</p>
+  <p style="font-family: var(--sans); font-size: 11px; letter-spacing: 1px; margin-top: 8px; color: var(--ink-light);">— TRIP PLANNER · JUNE 2026 —</p>
+</footer>
+
+</body>
+</html>
