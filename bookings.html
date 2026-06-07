@@ -148,6 +148,22 @@
     align-items: flex-start;
     gap: 10px;
     line-height: 1.5;
+    cursor: pointer;
+    transition: opacity 0.2s, color 0.2s, padding 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .checklist li:hover {
+    background: var(--paper-warm);
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-left: -6px;
+    margin-right: -6px;
+    border-radius: 4px;
+  }
+
+  .checklist li:active {
+    transform: scale(0.99);
   }
 
   .checklist li::before {
@@ -156,6 +172,7 @@
     font-size: 18px;
     line-height: 1;
     flex-shrink: 0;
+    transition: color 0.2s;
   }
 
   .checklist li.done::before {
@@ -166,6 +183,75 @@
   .checklist li.done {
     color: var(--ink-light);
     text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  .progress-section {
+    background: var(--paper-warm);
+    padding: 16px 18px;
+    border-radius: 8px;
+    margin: 20px 0 28px;
+    border: 1px solid var(--rule);
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--thai);
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+
+  .progress-label-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .progress-count {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .progress-track {
+    height: 8px;
+    background: var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--hub) 0%, var(--hub-soft) 100%);
+    width: 0%;
+    transition: width 0.4s ease;
+    border-radius: 4px;
+  }
+
+  .reset-btn {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    background: transparent;
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    padding: 8px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .reset-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
   }
 
   .priority-tag {
@@ -827,7 +913,20 @@
   <section class="section">
     <div class="section-label">— TASKS</div>
     <h2 class="section-title">งานก่อนเดินทาง <span class="chinese">行前准备</span></h2>
-    <p class="section-subtitle">เช็คลิสต์ที่ต้องทำก่อนวันที่ 19 มิ.ย.</p>
+    <p class="section-subtitle">เช็คลิสต์ที่ต้องทำก่อนวันที่ 19 มิ.ย. · กดเพื่อติ๊ก ✓</p>
+
+    <div class="progress-section">
+      <div class="progress-label">
+        <div class="progress-label-text">
+          <span>📋 Progress</span>
+        </div>
+        <div class="progress-count"><span id="done-count">0</span> / <span id="total-count">0</span></div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+      <button class="reset-btn" id="reset-btn">— Reset all —</button>
+    </div>
 
     <h3 style="font-family: var(--serif); font-size: 20px; margin-top: 24px; margin-bottom: 12px; color: var(--ink);">🎯 ต้องทำเร็วๆ นี้</h3>
     <ul class="checklist">
@@ -1074,6 +1173,93 @@
   <p>云南 · Yúnnán · ยูนนาน</p>
   <p style="font-family: var(--sans); font-size: 11px; letter-spacing: 1px; margin-top: 8px; color: var(--ink-light);">— TRIP PLANNER · JUNE 2026 —</p>
 </footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // Simple hash function to create stable IDs from text content
+  function hashText(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return 'task_' + Math.abs(hash).toString(36);
+  }
+
+  const STORAGE_PREFIX = 'yunnan_bookings_';
+
+  function getItemKey(item) {
+    // Use the text content (without inner tags' content) as basis for unique key
+    const text = item.textContent.trim().replace(/\s+/g, ' ').substring(0, 100);
+    return STORAGE_PREFIX + hashText(text);
+  }
+
+  function loadState() {
+    document.querySelectorAll('.checklist li').forEach(function(item) {
+      const key = getItemKey(item);
+      if (localStorage.getItem(key) === '1') {
+        item.classList.add('done');
+      }
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.checklist li');
+    const done = document.querySelectorAll('.checklist li.done');
+    const doneEl = document.getElementById('done-count');
+    const totalEl = document.getElementById('total-count');
+    const barEl = document.getElementById('progress-bar');
+    if (doneEl) doneEl.textContent = done.length;
+    if (totalEl) totalEl.textContent = all.length;
+    if (barEl) {
+      const percent = all.length > 0 ? (done.length / all.length) * 100 : 0;
+      barEl.style.width = percent + '%';
+    }
+  }
+
+  function toggleItem(item) {
+    const key = getItemKey(item);
+    if (item.classList.contains('done')) {
+      item.classList.remove('done');
+      localStorage.removeItem(key);
+    } else {
+      item.classList.add('done');
+      localStorage.setItem(key, '1');
+    }
+    updateProgress();
+  }
+
+  function resetAll() {
+    if (!confirm('ยืนยันล้างเช็คลิสต์ทั้งหมด?')) return;
+    document.querySelectorAll('.checklist li').forEach(function(item) {
+      const key = getItemKey(item);
+      localStorage.removeItem(key);
+      item.classList.remove('done');
+    });
+    updateProgress();
+  }
+
+  // Wire up clicks
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.checklist li').forEach(function(item) {
+      item.addEventListener('click', function() {
+        toggleItem(item);
+      });
+    });
+
+    const resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', resetAll);
+    }
+
+    loadState();
+  });
+})();
+</script>
 
 </body>
 </html>
