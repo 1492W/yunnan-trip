@@ -173,6 +173,13 @@
     margin: 0 0 12px 0;
   }
 
+  .tracker-hint {
+    font-family: var(--thai);
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-bottom: 14px;
+  }
+
   .tracker-summary {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -180,7 +187,7 @@
     padding: 10px 12px;
     background: var(--paper);
     border-radius: 4px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
 
   .summary-item-label {
@@ -198,245 +205,179 @@
     color: var(--ink);
   }
 
-  .day-row {
+  /* Trip leg cards (collapsible groups) */
+  .trip-leg {
+    margin-bottom: 8px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .trip-leg.open {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .leg-header {
     display: grid;
-    grid-template-columns: 38px 50px 1fr auto;
-    gap: 8px;
-    padding: 7px 0;
+    grid-template-columns: 20px 1fr auto;
+    gap: 12px;
     align-items: center;
-    border-bottom: 1px dashed var(--rule);
-    font-family: var(--thai);
-    font-size: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-left: 4px solid transparent;
   }
 
-  .day-row:last-child {
-    border-bottom: none;
+  .leg-header:hover {
+    background: rgba(0, 0, 0, 0.02);
   }
 
-  .day-row.empty {
+  .trip-leg[data-city="kunming-arrival"] .leg-header,
+  .trip-leg[data-city="kunming-study"] .leg-header {
+    border-left-color: var(--hub-soft);
+  }
+
+  .trip-leg[data-city="dali"] .leg-header {
+    border-left-color: var(--dali-soft);
+  }
+
+  .trip-leg[data-city="lijiang"] .leg-header {
+    border-left-color: var(--lijiang-soft);
+  }
+
+  .trip-leg[data-city="shangrila"] .leg-header {
+    border-left-color: var(--shangrila-soft);
+  }
+
+  .leg-chevron {
+    font-family: var(--sans);
+    font-size: 11px;
     color: var(--ink-light);
-    opacity: 0.65;
+    transition: transform 0.2s;
+    text-align: center;
   }
 
-  .day-row.logged {
+  .trip-leg.open .leg-chevron {
+    transform: rotate(90deg);
+  }
+
+  .leg-info {
+    min-width: 0;
+  }
+
+  .leg-name {
+    font-family: var(--serif);
+    font-size: 14px;
+    font-weight: 600;
     color: var(--ink);
   }
 
-  .day-row-num {
+  .leg-meta {
+    font-family: var(--thai);
+    font-size: 11px;
+    color: var(--ink-light);
+    margin-top: 2px;
+  }
+
+  .leg-total {
+    text-align: right;
+  }
+
+  .leg-total-value {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .leg-total-status {
     font-family: var(--sans);
     font-size: 9px;
     letter-spacing: 0.5px;
     color: var(--ink-light);
+    margin-top: 2px;
   }
 
-  .day-row-date {
-    font-size: 11px;
+  .leg-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .trip-leg.open .leg-body {
+    max-height: 3000px;
+  }
+
+  .leg-body-inner {
+    padding: 4px 14px 14px 14px;
+    border-top: 1px solid var(--rule);
+  }
+
+  .day-card {
+    padding: 10px 12px;
+    margin-top: 8px;
+    background: var(--paper-warm);
+    border-radius: 5px;
+    border-left: 2px solid var(--rule);
+  }
+
+  .day-card.logged {
+    border-left-color: var(--hub);
+    background: rgba(58, 90, 64, 0.04);
+  }
+
+  .day-card-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    align-items: baseline;
+    margin-bottom: 4px;
+  }
+
+  .day-card-num {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+  }
+
+  .day-card-date {
+    font-family: var(--thai);
+    font-size: 12px;
     color: var(--ink-soft);
   }
 
-  .day-row-context {
-    font-size: 12px;
-  }
-
-  .day-row-cost {
+  .day-card-cost {
     font-family: var(--serif);
     font-weight: 600;
-    font-size: 13px;
+    font-size: 14px;
+    color: var(--ink);
   }
 
-  .day-row.logged .day-row-cost {
+  .day-card.logged .day-card-cost {
     color: var(--hub);
   }
 
-  .day-row-note {
-    grid-column: 3 / 5;
-    font-size: 10px;
+  .day-card.empty .day-card-cost {
     color: var(--ink-light);
-    padding-top: 2px;
-    font-style: italic;
   }
 
-  .day-row {
-    cursor: pointer;
-    transition: background 0.15s;
+  .day-card-context {
+    font-family: var(--thai);
+    font-size: 12px;
+    color: var(--ink-soft);
   }
 
-  .day-row:hover {
-    background: rgba(0, 0, 0, 0.025);
-  }
-
-  .day-row:active {
-    background: rgba(0, 0, 0, 0.05);
-  }
-
-  .tracker-hint {
+  .day-card-note {
     font-family: var(--thai);
     font-size: 11px;
     color: var(--ink-light);
-    margin-bottom: 10px;
-    padding: 8px 10px;
-    background: rgba(139, 111, 71, 0.06);
-    border-radius: 4px;
-    border-left: 2px solid #8B6F47;
-  }
-
-  /* Modal */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  .modal-overlay.show {
-    display: flex;
-  }
-
-  .modal-content {
-    background: var(--paper);
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 380px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-  }
-
-  .modal-header {
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-  }
-
-  .modal-day-num {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 1.5px;
-    color: var(--ink-light);
-  }
-
-  .modal-day-info {
-    font-family: var(--serif);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-top: 4px;
-  }
-
-  .modal-field {
-    margin-bottom: 12px;
-  }
-
-  .modal-field label {
-    display: block;
-    font-family: var(--thai);
-    font-size: 12px;
-    color: var(--ink-soft);
-    margin-bottom: 5px;
-  }
-
-  .modal-field input {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--rule);
-    border-radius: 5px;
-    font-family: var(--thai);
-    font-size: 15px;
-    background: var(--paper-warm);
-    box-sizing: border-box;
-  }
-
-  .modal-field input:focus {
-    outline: none;
-    border-color: #8B6F47;
-    background: #fff;
-  }
-
-  .currency-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-
-  .modal-hint {
-    font-family: var(--thai);
-    font-size: 10px;
-    color: var(--ink-light);
-    margin-top: -8px;
-    margin-bottom: 12px;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed var(--rule);
     font-style: italic;
-  }
-
-  .modal-actions {
-    display: flex;
-    gap: 8px;
-    justify-content: flex-end;
-    margin-top: 16px;
-    flex-wrap: wrap;
-  }
-
-  .modal-btn {
-    padding: 10px 18px;
-    border: none;
-    border-radius: 5px;
-    font-family: var(--thai);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-
-  .modal-btn-cancel {
-    background: transparent;
-    color: var(--ink-light);
-  }
-
-  .modal-btn-delete {
-    background: rgba(204, 68, 68, 0.1);
-    color: #cc4444;
-  }
-
-  .modal-btn-save {
-    background: #8B6F47;
-    color: white;
-  }
-
-  .modal-btn-save:hover {
-    background: #735a3a;
-  }
-
-  .modal-btn-delete:hover {
-    background: rgba(204, 68, 68, 0.2);
-  }
-
-  .export-area {
-    margin-top: 12px;
-    padding: 12px;
-    background: var(--paper-warm);
-    border: 1px solid var(--rule);
-    border-radius: 6px;
-  }
-
-  .export-btn {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
-    border: 1px dashed var(--rule);
-    color: var(--ink-soft);
-    font-family: var(--thai);
-    font-size: 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .export-btn:hover {
-    border-color: #8B6F47;
-    color: #8B6F47;
   }
 
   .total-box {
@@ -602,190 +543,323 @@
 
       <div class="daily-food-tracker">
         <div class="tracker-title">📊 ค่าอาหารจริงรายวัน</div>
-        <div class="tracker-hint">💡 แตะที่แต่ละวันเพื่อใส่ค่าใช้จ่ายจริง · ข้อมูลบันทึกในเครื่อง</div>
+        <div class="tracker-hint">💡 แตะการ์ดเพื่อดูรายละเอียดแต่ละวัน · ส่งค่าใช้จ่ายให้ผมในแชท ผมจะอัพเดทให้ถาวร</div>
 
         <div class="tracker-summary">
           <div>
             <div class="summary-item-label">บันทึก</div>
-            <div class="summary-item-value" id="statDays">1 / 23 วัน</div>
+            <div class="summary-item-value">1 / 23 วัน</div>
           </div>
           <div>
             <div class="summary-item-label">รวมจ่ายแล้ว</div>
-            <div class="summary-item-value" id="statTotal">฿290</div>
+            <div class="summary-item-value">฿290</div>
           </div>
           <div>
             <div class="summary-item-label">เฉลี่ย/วัน</div>
-            <div class="summary-item-value" id="statAvg">฿290</div>
+            <div class="summary-item-value">฿290</div>
           </div>
           <div>
             <div class="summary-item-label">vs งบ ฿1,500/วัน</div>
-            <div class="summary-item-value" id="statVs" style="color: var(--hub);">-฿1,210</div>
+            <div class="summary-item-value" style="color: var(--hub);">-฿1,210</div>
           </div>
         </div>
 
-        <div class="day-row" data-day="0" onclick="openDayModal(0)">
-          <div class="day-row-num">DAY 0</div>
-          <div class="day-row-date">ศ 19/6</div>
-          <div class="day-row-context">Kunming · มาถึงเย็น</div>
-          <div class="day-row-cost">—</div>
+        <!-- KUNMING ARRIVAL -->
+        <div class="trip-leg open" data-city="kunming-arrival">
+          <div class="leg-header" onclick="toggleLeg(this)">
+            <span class="leg-chevron">▸</span>
+            <div class="leg-info">
+              <div class="leg-name">🌳 Kunming · Arrival</div>
+              <div class="leg-meta">Day 0 · 1 วัน</div>
+            </div>
+            <div class="leg-total">
+              <div class="leg-total-value">฿290</div>
+              <div class="leg-total-status">1/1 บันทึก</div>
+            </div>
+          </div>
+          <div class="leg-body">
+            <div class="leg-body-inner">
+              <div class="day-card logged">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 0</span>
+                  <span class="day-card-date">ศ 19/6</span>
+                  <span class="day-card-cost">฿290</span>
+                </div>
+                <div class="day-card-context">มาถึงเย็น · เช็คอิน Homeinn neo ห้อง 406</div>
+                <div class="day-card-note">¥57.50 · Meituan dinner</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="day-row" data-day="1" onclick="openDayModal(1)">
-          <div class="day-row-num">DAY 1</div>
-          <div class="day-row-date">ส 20/6</div>
-          <div class="day-row-context">Kunming → Dali</div>
-          <div class="day-row-cost">—</div>
+        <!-- DALI -->
+        <div class="trip-leg" data-city="dali">
+          <div class="leg-header" onclick="toggleLeg(this)">
+            <span class="leg-chevron">▸</span>
+            <div class="leg-info">
+              <div class="leg-name">🌸 Dali (ต้าหลี่)</div>
+              <div class="leg-meta">Day 1-3 · 3 วัน</div>
+            </div>
+            <div class="leg-total">
+              <div class="leg-total-value">฿0</div>
+              <div class="leg-total-status">0/3 บันทึก</div>
+            </div>
+          </div>
+          <div class="leg-body">
+            <div class="leg-body-inner">
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 1</span>
+                  <span class="day-card-date">ส 20/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming → Dali · รถไฟ D8692 (arrival 11:44) · เดินเมืองเก่า + sunset กำแพง</div>
+              </div>
+
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 2</span>
+                  <span class="day-card-date">อา 21/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Cangshan · ขึ้น cable car ดูยอดเขา</div>
+              </div>
+
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 3</span>
+                  <span class="day-card-date">จ 22/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Erhai loop · charter car รอบทะเลสาบ</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="day-row" data-day="2" onclick="openDayModal(2)">
-          <div class="day-row-num">DAY 2</div>
-          <div class="day-row-date">อา 21/6</div>
-          <div class="day-row-context">Dali · Cangshan</div>
-          <div class="day-row-cost">—</div>
+        <!-- LIJIANG -->
+        <div class="trip-leg" data-city="lijiang">
+          <div class="leg-header" onclick="toggleLeg(this)">
+            <span class="leg-chevron">▸</span>
+            <div class="leg-info">
+              <div class="leg-name">🏔️ Lijiang (ลี่เจียง)</div>
+              <div class="leg-meta">Day 4-5 · 2 วัน</div>
+            </div>
+            <div class="leg-total">
+              <div class="leg-total-value">฿0</div>
+              <div class="leg-total-status">0/2 บันทึก</div>
+            </div>
+          </div>
+          <div class="leg-body">
+            <div class="leg-body-inner">
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 4</span>
+                  <span class="day-card-date">อ 23/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Dali → Lijiang · C985 เช้า (07:45-09:35) · Black Dragon Pool + Shuhe + Lion Hill sunset</div>
+              </div>
+
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 5</span>
+                  <span class="day-card-date">พ 24/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Yulong / Maoniuping 3,500ม. · day trip</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="day-row" data-day="3" onclick="openDayModal(3)">
-          <div class="day-row-num">DAY 3</div>
-          <div class="day-row-date">จ 22/6</div>
-          <div class="day-row-context">Dali · Erhai loop</div>
-          <div class="day-row-cost">—</div>
+        <!-- SHANGRI-LA -->
+        <div class="trip-leg" data-city="shangrila">
+          <div class="leg-header" onclick="toggleLeg(this)">
+            <span class="leg-chevron">▸</span>
+            <div class="leg-info">
+              <div class="leg-name">🏛️ Shangri-La (แชงกรีล่า)</div>
+              <div class="leg-meta">Day 6-8 · 3 วัน</div>
+            </div>
+            <div class="leg-total">
+              <div class="leg-total-value">฿0</div>
+              <div class="leg-total-status">0/3 บันทึก</div>
+            </div>
+          </div>
+          <div class="leg-body">
+            <div class="leg-body-inner">
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 6</span>
+                  <span class="day-card-date">พฤ 25/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Lijiang → Shangri-La · C985 (09:41-11:22) · Songzanlin + Dukezong + กังหันมนต์</div>
+              </div>
+
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 7</span>
+                  <span class="day-card-date">ศ 26/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Pudacuo National Park · VIP tour</div>
+              </div>
+
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 8</span>
+                  <span class="day-card-date">ส 27/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Tiger Leaping Gorge (虎跳峡) · day tour</div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="day-row" data-day="4" onclick="openDayModal(4)">
-          <div class="day-row-num">DAY 4</div>
-          <div class="day-row-date">อ 23/6</div>
-          <div class="day-row-context">Dali → Lijiang</div>
-          <div class="day-row-cost">—</div>
-        </div>
+        <!-- KUNMING STUDY -->
+        <div class="trip-leg" data-city="kunming-study">
+          <div class="leg-header" onclick="toggleLeg(this)">
+            <span class="leg-chevron">▸</span>
+            <div class="leg-info">
+              <div class="leg-name">🌳 Kunming · Study Extension</div>
+              <div class="leg-meta">Day 9-22 · 14 วัน (Pordee เรียนภาษา)</div>
+            </div>
+            <div class="leg-total">
+              <div class="leg-total-value">฿0</div>
+              <div class="leg-total-status">0/14 บันทึก</div>
+            </div>
+          </div>
+          <div class="leg-body">
+            <div class="leg-body-inner">
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 9</span>
+                  <span class="day-card-date">อา 28/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Shangri-La → Kunming · C640 (10:05-16:03) · เช็คอิน Yulinlin</div>
+              </div>
 
-        <div class="day-row" data-day="5" onclick="openDayModal(5)">
-          <div class="day-row-num">DAY 5</div>
-          <div class="day-row-date">พ 24/6</div>
-          <div class="day-row-context">Lijiang · Yulong/Maoniuping</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 10</span>
+                  <span class="day-card-date">จ 29/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Pordee เริ่มเรียน KCEL วันแรก (9:25-12:00)</div>
+              </div>
 
-        <div class="day-row" data-day="6" onclick="openDayModal(6)">
-          <div class="day-row-num">DAY 6</div>
-          <div class="day-row-date">พฤ 25/6</div>
-          <div class="day-row-context">Lijiang → Shangri-La</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 11</span>
+                  <span class="day-card-date">อ 30/6</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="7" onclick="openDayModal(7)">
-          <div class="day-row-num">DAY 7</div>
-          <div class="day-row-date">ศ 26/6</div>
-          <div class="day-row-context">Shangri-La · Pudacuo</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 12</span>
+                  <span class="day-card-date">พ 1/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="8" onclick="openDayModal(8)">
-          <div class="day-row-num">DAY 8</div>
-          <div class="day-row-date">ส 27/6</div>
-          <div class="day-row-context">Shangri-La · TLG</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 13</span>
+                  <span class="day-card-date">พฤ 2/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="9" onclick="openDayModal(9)">
-          <div class="day-row-num">DAY 9</div>
-          <div class="day-row-date">อา 28/6</div>
-          <div class="day-row-context">Shangri-La → Kunming</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 14</span>
+                  <span class="day-card-date">ศ 3/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study (Pordee ครึ่งทาง)</div>
+              </div>
 
-        <div class="day-row" data-day="10" onclick="openDayModal(10)">
-          <div class="day-row-num">DAY 10</div>
-          <div class="day-row-date">จ 29/6</div>
-          <div class="day-row-context">Kunming · Pordee เริ่มเรียน</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 15</span>
+                  <span class="day-card-date">ส 4/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Weekend · Dali? · Stone Forest? (ยังไม่ตัดสินใจ)</div>
+              </div>
 
-        <div class="day-row" data-day="11" onclick="openDayModal(11)">
-          <div class="day-row-num">DAY 11</div>
-          <div class="day-row-date">อ 30/6</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 16</span>
+                  <span class="day-card-date">อา 5/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Weekend</div>
+              </div>
 
-        <div class="day-row" data-day="12" onclick="openDayModal(12)">
-          <div class="day-row-num">DAY 12</div>
-          <div class="day-row-date">พ 1/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 17</span>
+                  <span class="day-card-date">จ 6/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="13" onclick="openDayModal(13)">
-          <div class="day-row-num">DAY 13</div>
-          <div class="day-row-date">พฤ 2/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 18</span>
+                  <span class="day-card-date">อ 7/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="14" onclick="openDayModal(14)">
-          <div class="day-row-num">DAY 14</div>
-          <div class="day-row-date">ศ 3/7</div>
-          <div class="day-row-context">Kunming · study (Pordee ครึ่งทาง)</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 19</span>
+                  <span class="day-card-date">พ 8/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="15" onclick="openDayModal(15)">
-          <div class="day-row-num">DAY 15</div>
-          <div class="day-row-date">ส 4/7</div>
-          <div class="day-row-context">Weekend (Dali? · Stone Forest?)</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 20</span>
+                  <span class="day-card-date">พฤ 9/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · study</div>
+              </div>
 
-        <div class="day-row" data-day="16" onclick="openDayModal(16)">
-          <div class="day-row-num">DAY 16</div>
-          <div class="day-row-date">อา 5/7</div>
-          <div class="day-row-context">Weekend</div>
-          <div class="day-row-cost">—</div>
-        </div>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 21</span>
+                  <span class="day-card-date">ศ 10/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">Kunming · Pordee จบเรียน (วันสุดท้ายของ KCEL)</div>
+              </div>
 
-        <div class="day-row" data-day="17" onclick="openDayModal(17)">
-          <div class="day-row-num">DAY 17</div>
-          <div class="day-row-date">จ 6/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="day-row" data-day="18" onclick="openDayModal(18)">
-          <div class="day-row-num">DAY 18</div>
-          <div class="day-row-date">อ 7/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="day-row" data-day="19" onclick="openDayModal(19)">
-          <div class="day-row-num">DAY 19</div>
-          <div class="day-row-date">พ 8/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="day-row" data-day="20" onclick="openDayModal(20)">
-          <div class="day-row-num">DAY 20</div>
-          <div class="day-row-date">พฤ 9/7</div>
-          <div class="day-row-context">Kunming · study</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="day-row" data-day="21" onclick="openDayModal(21)">
-          <div class="day-row-num">DAY 21</div>
-          <div class="day-row-date">ศ 10/7</div>
-          <div class="day-row-context">Kunming · Pordee จบเรียน</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="day-row" data-day="22" onclick="openDayModal(22)">
-          <div class="day-row-num">DAY 22</div>
-          <div class="day-row-date">ส 11/7</div>
-          <div class="day-row-context">KMG → CNX · บินเช้า</div>
-          <div class="day-row-cost">—</div>
-        </div>
-
-        <div class="export-area">
-          <button class="export-btn" onclick="exportData()">📋 Export ข้อมูลทั้งหมด (copy text)</button>
+              <div class="day-card empty">
+                <div class="day-card-header">
+                  <span class="day-card-num">DAY 22</span>
+                  <span class="day-card-date">ส 11/7</span>
+                  <span class="day-card-cost">—</span>
+                </div>
+                <div class="day-card-context">KMG → CNX · บินเช้า MU9639</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -925,272 +999,11 @@
   <p style="font-family: var(--sans); font-size: 11px; letter-spacing: 1px; margin-top: 8px; color: var(--ink-light);">— TRIP PLANNER · JUNE 2026 —</p>
 </footer>
 
-<!-- Edit Modal -->
-<div id="dayModal" class="modal-overlay" onclick="closeOnBg(event)">
-  <div class="modal-content">
-    <div class="modal-header">
-      <div class="modal-day-num" id="modalDayNum">DAY X</div>
-      <div class="modal-day-info" id="modalDayInfo">date · context</div>
-    </div>
-
-    <div class="currency-row">
-      <div class="modal-field">
-        <label>จำนวน (¥)</label>
-        <input type="number" id="inputCNY" inputmode="decimal" step="0.01" placeholder="0.00">
-      </div>
-      <div class="modal-field">
-        <label>หรือ (฿)</label>
-        <input type="number" id="inputTHB" inputmode="decimal" step="1" placeholder="0">
-      </div>
-    </div>
-    <div class="modal-hint">ใส่ฝั่งใดฝั่งหนึ่งก็ได้ · จะคำนวณอีกฝั่งอัตโนมัติ (rate ¥1 = ฿5)</div>
-
-    <div class="modal-field">
-      <label>หมายเหตุ (ไม่บังคับ)</label>
-      <input type="text" id="inputNote" placeholder="เช่น 过桥米线 + ดินเนอร์ร้าน X">
-    </div>
-
-    <div class="modal-actions">
-      <button class="modal-btn modal-btn-cancel" onclick="closeModal()">ยกเลิก</button>
-      <button class="modal-btn modal-btn-delete" id="deleteBtn" onclick="deleteEntry()" style="display: none;">ลบ</button>
-      <button class="modal-btn modal-btn-save" onclick="saveEntry()">บันทึก</button>
-    </div>
-  </div>
-</div>
-
 <script>
-  const STORAGE_KEY = 'yunnan-food-tracker-2026';
-  const RATE = 5; // ¥1 = ฿5
-  const DAILY_BUDGET = 1500;
-  const TOTAL_DAYS = 23;
-  let currentDay = null;
-
-  const dayContext = {
-    0: { date: 'ศ 19/6', city: 'Kunming · มาถึงเย็น' },
-    1: { date: 'ส 20/6', city: 'Kunming → Dali' },
-    2: { date: 'อา 21/6', city: 'Dali · Cangshan' },
-    3: { date: 'จ 22/6', city: 'Dali · Erhai loop' },
-    4: { date: 'อ 23/6', city: 'Dali → Lijiang' },
-    5: { date: 'พ 24/6', city: 'Lijiang · Yulong' },
-    6: { date: 'พฤ 25/6', city: 'Lijiang → Shangri-La' },
-    7: { date: 'ศ 26/6', city: 'Shangri-La · Pudacuo' },
-    8: { date: 'ส 27/6', city: 'Shangri-La · TLG' },
-    9: { date: 'อา 28/6', city: 'Shangri-La → Kunming' },
-    10: { date: 'จ 29/6', city: 'Kunming · เริ่มเรียน' },
-    11: { date: 'อ 30/6', city: 'Kunming · study' },
-    12: { date: 'พ 1/7', city: 'Kunming · study' },
-    13: { date: 'พฤ 2/7', city: 'Kunming · study' },
-    14: { date: 'ศ 3/7', city: 'Kunming · ครึ่งทาง' },
-    15: { date: 'ส 4/7', city: 'Weekend' },
-    16: { date: 'อา 5/7', city: 'Weekend' },
-    17: { date: 'จ 6/7', city: 'Kunming · study' },
-    18: { date: 'อ 7/7', city: 'Kunming · study' },
-    19: { date: 'พ 8/7', city: 'Kunming · study' },
-    20: { date: 'พฤ 9/7', city: 'Kunming · study' },
-    21: { date: 'ศ 10/7', city: 'Kunming · จบเรียน' },
-    22: { date: 'ส 11/7', city: 'KMG → CNX · บินเช้า' }
-  };
-
-  function getDefaults() {
-    return {
-      0: { thb: 290, cny: 57.50, note: 'Meituan dinner @ Homeinn neo' }
-    };
+  function toggleLeg(headerEl) {
+    const leg = headerEl.parentElement;
+    leg.classList.toggle('open');
   }
-
-  function loadData() {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      try { return JSON.parse(stored); } catch(e) { return getDefaults(); }
-    }
-    const defaults = getDefaults();
-    saveData(defaults);
-    return defaults;
-  }
-
-  function saveData(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
-
-  function openDayModal(day) {
-    currentDay = day;
-    const data = loadData();
-    const entry = data[day];
-    const ctx = dayContext[day];
-
-    document.getElementById('modalDayNum').textContent = `DAY ${day}`;
-    document.getElementById('modalDayInfo').textContent = `${ctx.date} · ${ctx.city}`;
-
-    document.getElementById('inputCNY').value = entry?.cny || '';
-    document.getElementById('inputTHB').value = entry?.thb || '';
-    document.getElementById('inputNote').value = entry?.note || '';
-    document.getElementById('deleteBtn').style.display = entry ? 'inline-block' : 'none';
-
-    document.getElementById('dayModal').classList.add('show');
-    setTimeout(() => document.getElementById('inputCNY').focus(), 100);
-  }
-
-  function closeModal() {
-    document.getElementById('dayModal').classList.remove('show');
-    currentDay = null;
-  }
-
-  function closeOnBg(event) {
-    if (event.target.id === 'dayModal') closeModal();
-  }
-
-  function saveEntry() {
-    let cny = parseFloat(document.getElementById('inputCNY').value);
-    let thb = parseFloat(document.getElementById('inputTHB').value);
-    const note = document.getElementById('inputNote').value.trim();
-
-    if (!cny && !thb) {
-      alert('กรุณาใส่จำนวนเงิน');
-      return;
-    }
-
-    if (cny && !thb) thb = Math.round(cny * RATE);
-    if (thb && !cny) cny = parseFloat((thb / RATE).toFixed(2));
-
-    const data = loadData();
-    data[currentDay] = { cny, thb, note };
-    saveData(data);
-
-    closeModal();
-    renderAll();
-  }
-
-  function deleteEntry() {
-    if (!confirm('ลบรายการ Day ' + currentDay + '?')) return;
-    const data = loadData();
-    delete data[currentDay];
-    saveData(data);
-    closeModal();
-    renderAll();
-  }
-
-  function renderAll() {
-    const data = loadData();
-
-    for (let day = 0; day <= 22; day++) {
-      const row = document.querySelector(`[data-day="${day}"]`);
-      if (!row) continue;
-      const entry = data[day];
-      const costEl = row.querySelector('.day-row-cost');
-      let noteEl = row.querySelector('.day-row-note');
-
-      if (entry) {
-        row.classList.remove('empty');
-        row.classList.add('logged');
-        costEl.textContent = '฿' + entry.thb.toLocaleString();
-
-        const cnyText = entry.cny ? `¥${entry.cny}` : '';
-        const noteText = [cnyText, entry.note].filter(Boolean).join(' · ');
-
-        if (noteText) {
-          if (!noteEl) {
-            noteEl = document.createElement('div');
-            noteEl.className = 'day-row-note';
-            row.appendChild(noteEl);
-          }
-          noteEl.textContent = noteText;
-        } else if (noteEl) {
-          noteEl.remove();
-        }
-      } else {
-        row.classList.remove('logged');
-        row.classList.add('empty');
-        costEl.textContent = '—';
-        if (noteEl) noteEl.remove();
-      }
-    }
-
-    updateStats();
-  }
-
-  function updateStats() {
-    const data = loadData();
-    const entries = Object.values(data);
-    const days = entries.length;
-    const total = entries.reduce((sum, e) => sum + (e.thb || 0), 0);
-    const avg = days > 0 ? Math.round(total / days) : 0;
-    const vs = avg - DAILY_BUDGET;
-
-    document.getElementById('statDays').textContent = days + ' / ' + TOTAL_DAYS + ' วัน';
-    document.getElementById('statTotal').textContent = '฿' + total.toLocaleString();
-    document.getElementById('statAvg').textContent = days > 0 ? '฿' + avg.toLocaleString() : '—';
-
-    const vsEl = document.getElementById('statVs');
-    if (days === 0) {
-      vsEl.textContent = '—';
-      vsEl.style.color = '';
-    } else if (vs < 0) {
-      vsEl.textContent = '-฿' + Math.abs(vs).toLocaleString();
-      vsEl.style.color = '#2e7d32';
-    } else if (vs > 0) {
-      vsEl.textContent = '+฿' + vs.toLocaleString();
-      vsEl.style.color = '#c62828';
-    } else {
-      vsEl.textContent = '฿0';
-      vsEl.style.color = '';
-    }
-  }
-
-  function exportData() {
-    const data = loadData();
-    const lines = ['🍜 ค่าอาหารยูนนาน 2026', ''];
-    let totalTHB = 0;
-    let loggedDays = 0;
-
-    for (let day = 0; day <= 22; day++) {
-      const entry = data[day];
-      const ctx = dayContext[day];
-      if (entry) {
-        const cnyPart = entry.cny ? `¥${entry.cny}` : '';
-        const thbPart = `฿${entry.thb}`;
-        const notePart = entry.note ? ` — ${entry.note}` : '';
-        lines.push(`DAY ${day} · ${ctx.date} · ${ctx.city}`);
-        lines.push(`  ${cnyPart}${cnyPart ? ' / ' : ''}${thbPart}${notePart}`);
-        totalTHB += entry.thb;
-        loggedDays++;
-      }
-    }
-
-    lines.push('');
-    lines.push('═══════════');
-    lines.push(`บันทึก: ${loggedDays}/23 วัน`);
-    lines.push(`รวม: ฿${totalTHB.toLocaleString()}`);
-    if (loggedDays > 0) {
-      lines.push(`เฉลี่ย: ฿${Math.round(totalTHB / loggedDays).toLocaleString()}/วัน`);
-    }
-
-    const text = lines.join('\n');
-
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(text).then(() => {
-        alert('คัดลอกแล้ว! ✓ Paste กลับมาให้ผมเพื่ออัพเดทเว็บถาวร');
-      }).catch(() => fallbackCopy(text));
-    } else {
-      fallbackCopy(text);
-    }
-  }
-
-  function fallbackCopy(text) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); alert('คัดลอกแล้ว ✓'); }
-    catch(e) { prompt('คัดลอกข้อความนี้:', text); }
-    ta.remove();
-  }
-
-  // ESC to close modal
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
-  });
-
-  // Initialize on load
-  document.addEventListener('DOMContentLoaded', renderAll);
 </script>
 
 </body>
