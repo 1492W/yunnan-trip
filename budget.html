@@ -157,6 +157,105 @@
     opacity: 0.6;
   }
 
+  .daily-food-tracker {
+    margin-top: 18px;
+    padding: 16px;
+    background: var(--paper-warm);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+  }
+
+  .tracker-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 12px 0;
+  }
+
+  .tracker-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px 12px;
+    background: var(--paper);
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+
+  .summary-item-label {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+    margin-bottom: 2px;
+  }
+
+  .summary-item-value {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .day-row {
+    display: grid;
+    grid-template-columns: 38px 50px 1fr auto;
+    gap: 8px;
+    padding: 7px 0;
+    align-items: center;
+    border-bottom: 1px dashed var(--rule);
+    font-family: var(--thai);
+    font-size: 12px;
+  }
+
+  .day-row:last-child {
+    border-bottom: none;
+  }
+
+  .day-row.empty {
+    color: var(--ink-light);
+    opacity: 0.65;
+  }
+
+  .day-row.logged {
+    color: var(--ink);
+  }
+
+  .day-row-num {
+    font-family: var(--sans);
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    color: var(--ink-light);
+  }
+
+  .day-row-date {
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+
+  .day-row-context {
+    font-size: 12px;
+  }
+
+  .day-row-cost {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .day-row.logged .day-row-cost {
+    color: var(--hub);
+  }
+
+  .day-row-note {
+    grid-column: 3 / 5;
+    font-size: 10px;
+    color: var(--ink-light);
+    padding-top: 2px;
+    font-style: italic;
+  }
+
   .total-box {
     background: var(--ink);
     color: var(--paper);
@@ -316,6 +415,191 @@
         🍲 อาหารเย็น · ~฿700/วัน (เผื่อร้านดีๆ)<br>
         ☕ ของกินเล่น · ~฿100/วัน<br>
         <em>หมายเหตุ: บางวันใช้น้อย (กินในโรงแรม) · บางวันใช้มาก (ร้านดัง)</em>
+      </div>
+
+      <div class="daily-food-tracker">
+        <div class="tracker-title">📊 ค่าอาหารจริงรายวัน</div>
+
+        <div class="tracker-summary">
+          <div>
+            <div class="summary-item-label">บันทึก</div>
+            <div class="summary-item-value">1 / 23 วัน</div>
+          </div>
+          <div>
+            <div class="summary-item-label">รวมจ่ายแล้ว</div>
+            <div class="summary-item-value">฿290</div>
+          </div>
+          <div>
+            <div class="summary-item-label">เฉลี่ย/วัน</div>
+            <div class="summary-item-value">฿290</div>
+          </div>
+          <div>
+            <div class="summary-item-label">vs งบ ฿1,500/วัน</div>
+            <div class="summary-item-value" style="color: var(--hub);">-฿1,210</div>
+          </div>
+        </div>
+
+        <div class="day-row logged">
+          <div class="day-row-num">DAY 0</div>
+          <div class="day-row-date">ศ 19/6</div>
+          <div class="day-row-context">Kunming · มาถึงเย็น</div>
+          <div class="day-row-cost">฿290</div>
+          <div class="day-row-note">¥57.50 · Meituan dinner @ Homeinn neo</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 1</div>
+          <div class="day-row-date">ส 20/6</div>
+          <div class="day-row-context">Kunming → Dali</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 2</div>
+          <div class="day-row-date">อา 21/6</div>
+          <div class="day-row-context">Dali · Cangshan</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 3</div>
+          <div class="day-row-date">จ 22/6</div>
+          <div class="day-row-context">Dali · Erhai loop</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 4</div>
+          <div class="day-row-date">อ 23/6</div>
+          <div class="day-row-context">Dali → Lijiang</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 5</div>
+          <div class="day-row-date">พ 24/6</div>
+          <div class="day-row-context">Lijiang · Yulong/Maoniuping</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 6</div>
+          <div class="day-row-date">พฤ 25/6</div>
+          <div class="day-row-context">Lijiang → Shangri-La</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 7</div>
+          <div class="day-row-date">ศ 26/6</div>
+          <div class="day-row-context">Shangri-La · Pudacuo</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 8</div>
+          <div class="day-row-date">ส 27/6</div>
+          <div class="day-row-context">Shangri-La · TLG</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 9</div>
+          <div class="day-row-date">อา 28/6</div>
+          <div class="day-row-context">Shangri-La → Kunming</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 10</div>
+          <div class="day-row-date">จ 29/6</div>
+          <div class="day-row-context">Kunming · Pordee เริ่มเรียน</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 11</div>
+          <div class="day-row-date">อ 30/6</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 12</div>
+          <div class="day-row-date">พ 1/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 13</div>
+          <div class="day-row-date">พฤ 2/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 14</div>
+          <div class="day-row-date">ศ 3/7</div>
+          <div class="day-row-context">Kunming · study (Pordee ครึ่งทาง)</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 15</div>
+          <div class="day-row-date">ส 4/7</div>
+          <div class="day-row-context">Weekend (Dali? · Stone Forest?)</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 16</div>
+          <div class="day-row-date">อา 5/7</div>
+          <div class="day-row-context">Weekend</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 17</div>
+          <div class="day-row-date">จ 6/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 18</div>
+          <div class="day-row-date">อ 7/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 19</div>
+          <div class="day-row-date">พ 8/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 20</div>
+          <div class="day-row-date">พฤ 9/7</div>
+          <div class="day-row-context">Kunming · study</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 21</div>
+          <div class="day-row-date">ศ 10/7</div>
+          <div class="day-row-context">Kunming · Pordee จบเรียน</div>
+          <div class="day-row-cost">—</div>
+        </div>
+
+        <div class="day-row empty">
+          <div class="day-row-num">DAY 22</div>
+          <div class="day-row-date">ส 11/7</div>
+          <div class="day-row-context">KMG → CNX · บินเช้า</div>
+          <div class="day-row-cost">—</div>
+        </div>
       </div>
     </div>
 
