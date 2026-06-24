@@ -456,34 +456,53 @@
 
     <!-- DAILY AVERAGE COMPARISON -->
     <div style="background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; margin-top: 16px;">
-      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 10px;">— ค่าใช้จ่ายเฉลี่ย/วัน (ไม่รวม flights · trains · tour · คอร์สเรียน)</div>
+      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 10px;">— ค่าใช้จ่ายเฉลี่ย/วัน (ไม่รวม flights · trains · คอร์สเรียน)</div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+      <!-- Overall -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">
         <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">📋 ประมาณการ</div>
-          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink);">฿4,784/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">pool ฿105,252 ÷ 22 วัน</div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">📋 ประมาณการ (รวม)</div>
+          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink);">฿4,942/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">pool ฿108,725 ÷ 22 วัน</div>
         </div>
         <div>
           <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">✅ จริง (5 วัน)</div>
           <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: #2e7d32;">฿4,814/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">฿24,072 ÷ 5 วัน · +฿30 ✅ on target</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">−฿128/วัน ✅ ใต้งบ</div>
         </div>
       </div>
 
-      <div style="background: #f4ede0; border-left: 3px solid var(--lijiang-soft); padding: 8px 12px; margin-bottom: 10px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.6;">
-        <strong style="color: var(--ink);">รวมใน pool:</strong> ที่พัก · ประกัน · SIM · อาหาร · Activities (ไม่รวม TLG tour) · Didi/Bus<br>
-        <strong style="color: var(--ink);">ไม่รวมใน pool:</strong> ✈️ Flights ฿32,970 · 📚 Chinese class ฿14,800 · 🚂 Trains + 🎫 Tour = Big Day
+      <!-- Big Day -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
+        <div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🔴 Big Day (ประมาณการ)</div>
+          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink);">~฿7,500/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~6 วัน (Cangshan/Yulong/Pudacuo/TLG ฯลฯ)</div>
+        </div>
+        <div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🔴 Big Day (จริง · 2 วัน)</div>
+          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: #2e7d32;">฿6,819/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">Day 2 ฿5,607 · Day 5 ฿8,031</div>
+        </div>
       </div>
 
-      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 8px;">— 🎯 BIG DAY EXPENSES (นอก pool · ฿10,288)</div>
+      <!-- Regular Day -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+        <div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🟢 วันธรรมดา (ประมาณการ)</div>
+          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink);">~฿4,000/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~16 วัน (transit/Kunming/Pordee คลาส)</div>
+        </div>
+        <div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🟢 วันธรรมดา (จริง · 3 วัน)</div>
+          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: #2e7d32;">฿3,477/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">Day 1 ฿3,398 · Day 3 ฿3,602 · Day 4 ฿3,431</div>
+        </div>
+      </div>
 
-      <div style="font-family: var(--sans); font-size: 11px; color: var(--ink-light); line-height: 1.8;">
-        🚂 Day 1: Train Kunming→Dali · ฿1,815<br>
-        🚂 Day 4: Train Dali→Lijiang · ฿1,000<br>
-        🚂 Day 6: Train Lijiang→Shangri-La · ฿790<br>
-        🎫 Day 8: TLG Day Tour · ฿3,473<br>
-        🚂 Day 9: Train Shangri-La→Kunming · ฿3,210
+      <div style="background: #f4ede0; border-left: 3px solid var(--lijiang-soft); padding: 8px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.6;">
+        <strong style="color: var(--ink);">รวมใน pool:</strong> ที่พัก (prorated) · ประกัน · SIM · อาหาร · Activities · Didi/Bus<br>
+        <strong style="color: var(--ink);">ไม่รวมใน pool (sunk cost):</strong> ✈️ Flights ฿32,970 · 🚂 Trains ฿6,815 · 📚 Chinese class ฿14,800
       </div>
     </div>
 
