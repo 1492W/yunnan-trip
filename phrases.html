@@ -108,6 +108,18 @@
     border-top: 1px solid var(--rule);
   }
   .subhead:first-child { border-top: none; padding-top: 0; }
+  .acc { border:1px solid var(--rule); border-radius:12px; margin:14px 0; overflow:hidden; background:var(--paper); }
+  .acc-head { width:100%; display:flex; align-items:center; gap:10px; padding:18px; background:none; border:none; cursor:pointer; font-family:inherit; text-align:left; }
+  .acc-head:hover, .acc-head:active { background:var(--accent-pale); }
+  .acc-zh { font-family:var(--chinese); font-size:21px; color:var(--ink); line-height:1; }
+  .acc-name { font-family:var(--sans); font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-light); margin-left:9px; }
+  .acc-spacer { flex:1; }
+  .acc-count { font-family:var(--sans); font-size:11px; color:var(--accent); white-space:nowrap; }
+  .acc-chevron { font-size:13px; color:var(--ink-light); transition:transform .25s; flex-shrink:0; }
+  .acc.open .acc-chevron { transform:rotate(180deg); }
+  .acc-body { display:none; padding:0 18px 10px; }
+  .acc.open .acc-body { display:block; }
+  .acc-hint { font-family:var(--sans); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-light); text-align:center; margin:18px 0 2px; }
 </style>
 </head>
 <body>
@@ -129,19 +141,15 @@
 
 <main class="container">
 
-  <nav class="cat-nav">
-    <div class="cat-nav-inner">
-      <a href="#dali">Dali</a>
-      <a href="#lijiang">Lijiang</a>
-      <a href="#shangrila">Shangri-La</a>
-      <a href="#kunming">Kunming</a>
-      <a href="#combo">Suffixes</a>
-    </div>
-  </nav>
+  <p class="acc-hint">แตะเมืองเพื่อกางคำค้น · แตะคำเพื่อก็อปปี้</p>
 
-  <section class="section category" id="dali">
-    <div class="section-label">— 大理</div>
-    <h2 class="section-title">Dali</h2>
+  <div class="acc" id="dali">
+    <button class="acc-head" onclick="toggle(this)">
+      <span class="acc-zh">大理</span><span class="acc-name">Dali</span>
+      <span class="acc-spacer"></span>
+      <span class="acc-count">20 คำ</span><span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body">
 
     <div class="subhead">เขาชางซาน · ดอกไม้</div>
     <div class="term-list">
@@ -178,11 +186,16 @@
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">百客屋</div><div class="term-py">Bǎikèwū</div></div><span class="term-th">Baikewu ร้านเช่า</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">大理 包车</div><div class="term-py">Dàlǐ bāochē</div></div><span class="term-th">เหมารถ</span></div>
     </div>
-  </section>
+    </div>
+  </div>
 
-  <section class="section category" id="lijiang">
-    <div class="section-label">— 丽江</div>
-    <h2 class="section-title">Lijiang</h2>
+  <div class="acc" id="lijiang">
+    <button class="acc-head" onclick="toggle(this)">
+      <span class="acc-zh">丽江</span><span class="acc-name">Lijiang</span>
+      <span class="acc-spacer"></span>
+      <span class="acc-count">18 คำ</span><span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body">
 
     <div class="subhead">ภูเขาหิมะมังกรหยก</div>
     <div class="term-list">
@@ -217,11 +230,16 @@
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">虎跳峡 高路</div><div class="term-py">Hǔtiàoxiá gāolù</div></div><span class="term-th">High Trail</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">28道拐</div><div class="term-py">Èrshíbā dào guǎi</div></div><span class="term-th">28 Bends</span></div>
     </div>
-  </section>
+    </div>
+  </div>
 
-  <section class="section category" id="shangrila">
-    <div class="section-label">— 香格里拉</div>
-    <h2 class="section-title">Shangri-La</h2>
+  <div class="acc open" id="shangrila">
+    <button class="acc-head" onclick="toggle(this)">
+      <span class="acc-zh">香格里拉</span><span class="acc-name">Shangri-La</span>
+      <span class="acc-spacer"></span>
+      <span class="acc-count">15 คำ</span><span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body">
 
     <div class="subhead">ธรรมชาติ · ทุ่งหญ้า</div>
     <div class="term-list">
@@ -244,15 +262,21 @@
 
     <div class="subhead">ไกลออกไป</div>
     <div class="term-list">
+      <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">巴拉格宗 香巴拉佛塔</div><div class="term-py">Bālāgézōng Xiāngbālā fótǎ</div></div><span class="term-th">Balagezong + เจดีย์ (เก็บ winter)</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">梅里雪山</div><div class="term-py">Méilǐ xuěshān</div></div><span class="term-th">Meili Snow Mountain</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">雨崩村</div><div class="term-py">Yǔbēng cūn</div></div><span class="term-th">Yubeng Village trek</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">飞来寺 日照金山</div><div class="term-py">Fēilái sì rìzhào jīnshān</div></div><span class="term-th">Feilai วิวภูเขาทอง</span></div>
     </div>
-  </section>
+    </div>
+  </div>
 
-  <section class="section category" id="kunming">
-    <div class="section-label">— 昆明</div>
-    <h2 class="section-title">Kunming</h2>
+  <div class="acc" id="kunming">
+    <button class="acc-head" onclick="toggle(this)">
+      <span class="acc-zh">昆明</span><span class="acc-name">Kunming</span>
+      <span class="acc-spacer"></span>
+      <span class="acc-count">27 คำ</span><span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body">
 
     <div class="subhead">ในเมือง</div>
     <div class="term-list">
@@ -296,11 +320,16 @@
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">斗南花市</div><div class="term-py">Dòunán huāshì</div></div><span class="term-th">ตลาดดอกไม้</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">云南咖啡</div><div class="term-py">Yúnnán kāfēi</div></div><span class="term-th">กาแฟยูนนาน</span></div>
     </div>
-  </section>
+    </div>
+  </div>
 
-  <section class="section category" id="combo">
-    <div class="section-label">— USEFUL SUFFIXES</div>
-    <h2 class="section-title">คำต่อท้าย</h2>
+  <div class="acc" id="combo">
+    <button class="acc-head" onclick="toggle(this)">
+      <span class="acc-zh" style="font-family:var(--thai);font-size:16px;">คำต่อท้าย</span><span class="acc-name">Suffixes</span>
+      <span class="acc-spacer"></span>
+      <span class="acc-count">13 คำ</span><span class="acc-chevron">▾</span>
+    </button>
+    <div class="acc-body">
     <p class="section-subtitle">ใส่ท้ายชื่อสถานที่เพื่อหาประเภทโพสต์ที่ต้องการ</p>
 
     <div class="term-list">
@@ -318,7 +347,8 @@
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">美食</div><div class="term-py">Měishí</div></div><span class="term-th">อาหารอร่อย</span></div>
       <div class="term" onclick="c(this)"><div class="term-main"><div class="term-zh">民宿</div><div class="term-py">Mínsù</div></div><span class="term-th">B&amp;B / homestay</span></div>
     </div>
-  </section>
+    </div>
+  </div>
 
 </main>
 
@@ -340,6 +370,16 @@
 </nav>
 
 <script>
+  function toggle(btn) {
+    const card = btn.parentElement;
+    const wasOpen = card.classList.contains('open');
+    document.querySelectorAll('.acc.open').forEach(a => a.classList.remove('open'));
+    if (!wasOpen) {
+      card.classList.add('open');
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   function c(el) {
     const text = el.querySelector('.term-zh').textContent.trim();
     navigator.clipboard?.writeText(text);
