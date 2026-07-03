@@ -456,7 +456,7 @@
 
     <!-- DAILY AVERAGE COMPARISON -->
     <div style="background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; margin-top: 16px;">
-      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 10px;">— ค่าใช้จ่ายเฉลี่ย/วัน (ไม่รวม flights · trains · คอร์สเรียน)</div>
+      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 10px;">— โมเดลวางแผน · แยกเฟสเรียน vs เที่ยว</div>
 
       <!-- Overall -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">
@@ -466,38 +466,43 @@
           <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">pool ฿108,725 ÷ 22 วัน</div>
         </div>
         <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">✅ จริง (5 วัน)</div>
-          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: #2e7d32;">฿4,814/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">−฿128/วัน ✅ ใต้งบ</div>
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">✅ จริง (14 วัน)</div>
+          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: #2e7d32;">~฿4,200/วัน</div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~−฿740/วัน ✅ ใต้งบ</div>
         </div>
       </div>
 
-      <!-- Big Day -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px;">
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🔴 Big Day (ประมาณการ)</div>
-          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink);">~฿7,500/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~6 วัน (Cangshan/Yulong/Songzanlin/TLG ฯลฯ)</div>
-        </div>
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🔴 Big Day (จริง · 2 วัน)</div>
-          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: #2e7d32;">฿6,819/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">Day 2 ฿5,607 · Day 5 ฿8,031</div>
-        </div>
+      <!-- Study phase -->
+      <div style="background: #eef5ee; border-left: 3px solid #6a9a6a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;">
+        <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">📚 เฟสเรียนคุนหมิง · เฉลี่ย/วัน (นิ่ง · วางแผนได้)</div>
+        <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; color: #2e7d32;">~฿2,760<span style="font-size: 12px;">/วัน</span></div>
+        <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px; line-height: 1.5;">🏨 ฿1,475 · 🍱 ฿974 · 🚕 ฿259 · 🎫 ฿50 <span style="opacity: 0.65;">(Day 10-13)</span><br>คาดที่เหลือ Day 17-21 (5 วัน) ≈ ฿13,800</div>
       </div>
 
-      <!-- Regular Day -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🟢 วันธรรมดา (ประมาณการ)</div>
-          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--ink);">~฿4,000/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~16 วัน (transit/Kunming/Pordee คลาส)</div>
-        </div>
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🟢 วันธรรมดา (จริง · 3 วัน)</div>
-          <div style="font-family: var(--serif); font-size: 16px; font-weight: 600; color: #2e7d32;">฿3,477/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">Day 1 ฿3,398 · Day 3 ฿3,602 · Day 4 ฿3,431</div>
-        </div>
+      <!-- Travel per-day -->
+      <div style="background: #fdf3e8; border-left: 3px solid var(--lijiang-soft); border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;">
+        <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🎡 เฟสเที่ยว · ต่อวัน (แปรผัน · ไม่รวมตั๋วใหญ่)</div>
+        <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink);">~฿3,600<span style="font-size: 12px;">/วัน</span></div>
+        <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px; line-height: 1.5;">🏨 ฿1,700 · 🍱 ฿1,620 · 🚕 รถในเมือง ฿280<br><em>+ รถไฟ / กระเช้า / ทัวร์ บวกเพิ่มตามทริป</em></div>
+      </div>
+
+      <!-- Per-city hotels -->
+      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-bottom: 8px; line-height: 1.7;">
+        <strong style="color: var(--ink);">🏨 ที่พัก/คืน รายเมือง:</strong> Dali ฿1,176 · Shangri-La ฿1,520 · Lijiang ฿1,705 · Fuxian ฿2,766<br>
+        <span style="opacity: 0.65;">(คุนหมิงคืนแรก ฿1,468 = โรงแรมบัดเจ็ต · ตัดออกจากค่าเฉลี่ย)</span>
+      </div>
+
+      <!-- One-off -->
+      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-bottom: 10px; line-height: 1.7;">
+        <strong style="color: var(--ink);">➕ ครั้งเดียว (บวกเพิ่มเอง):</strong><br>
+        🚂 รถไฟข้ามเมือง ฿875–3,210/เที่ยว · 🎫 กระเช้า/ทัวร์ ฿821–4,523/อัน
+      </div>
+
+      <!-- Planning formula -->
+      <div style="background: #f0e7d6; border-left: 3px solid var(--hub); border-radius: 4px; padding: 9px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.7; margin-bottom: 12px;">
+        <strong style="color: var(--ink);">🧮 สูตรวางแผนทริปหน้า:</strong><br>
+        เที่ยว N วัน = <strong style="color: var(--ink);">N × ฿3,600</strong> + ค่ารถไฟ + ค่ากระเช้า/ทัวร์<br>
+        <span style="opacity: 0.8;">ตย. 6 วัน 2 เมือง = 6×3,600 + รถไฟ (~฿4,000) + กระเช้า (~฿6,000) ≈ <strong style="color: var(--ink);">฿31,600</strong> (ไม่รวมตั๋วบิน)</span>
       </div>
 
       <div style="background: #f4ede0; border-left: 3px solid var(--lijiang-soft); padding: 8px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.6;">
