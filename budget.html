@@ -303,11 +303,14 @@
   .leg-body {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-out;
+  }
+
+  body.ready .leg-body {
+    transition: max-height 0.35s ease-out;
   }
 
   .trip-leg.open .leg-body {
-    max-height: 3000px;
+    max-height: 6000px;
   }
 
   .leg-body-inner {
@@ -1018,6 +1021,11 @@
     const leg = headerEl.parentElement;
     leg.classList.toggle('open');
   }
+  window.addEventListener('load', function () {
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { document.body.classList.add('ready'); });
+    });
+  });
 </script>
 
 </body>
