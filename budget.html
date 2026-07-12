@@ -459,53 +459,79 @@
 
     <!-- DAILY AVERAGE COMPARISON -->
     <div style="background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 14px 16px; margin-top: 16px;">
-      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 10px;">— โมเดลวางแผน · แยกเฟสเรียน vs เที่ยว</div>
+      <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 1.5px; color: var(--ink-light); margin-bottom: 12px;">— สรุปจริง 22 วัน · แยกเฟสเที่ยว vs เรียน</div>
 
-      <!-- Overall -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);">
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">📋 ประมาณการ (รวม)</div>
-          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: var(--ink);">฿4,942/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">pool ฿108,725 ÷ 22 วัน</div>
+      <!-- TWO PHASES -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+        <div style="background: #fdf3e8; border-left: 3px solid var(--lijiang-soft); border-radius: 4px; padding: 10px 12px;">
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 3px;">🎡 ช่วงเที่ยว · 13 วัน</div>
+          <div style="font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--ink);">฿4,940<span style="font-size: 11px;">/วัน</span></div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px;">รวม ฿64,240</div>
         </div>
-        <div>
-          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">✅ จริง (14 วัน)</div>
-          <div style="font-family: var(--serif); font-size: 18px; font-weight: 600; color: #2e7d32;">~฿4,200/วัน</div>
-          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 2px;">~−฿740/วัน ✅ ใต้งบ</div>
+        <div style="background: #eef5ee; border-left: 3px solid #6a9a6a; border-radius: 4px; padding: 10px 12px;">
+          <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 3px;">📚 ช่วงเรียน · 9 วัน</div>
+          <div style="font-family: var(--serif); font-size: 19px; font-weight: 600; color: #2e7d32;">฿3,010<span style="font-size: 11px;">/วัน</span></div>
+          <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px;">รวม ฿27,060</div>
         </div>
       </div>
 
-      <!-- Study phase -->
-      <div style="background: #eef5ee; border-left: 3px solid #6a9a6a; border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;">
-        <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">📚 เฟสเรียนคุนหมิง · เฉลี่ย/วัน (นิ่ง · วางแผนได้)</div>
-        <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; color: #2e7d32;">~฿2,760<span style="font-size: 12px;">/วัน</span></div>
-        <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px; line-height: 1.5;">🏨 ฿1,475 · 🍱 ฿974 · 🚕 ฿259 · 🎫 ฿50 <span style="opacity: 0.65;">(Day 10-13)</span><br>คาดที่เหลือ Day 17-21 (5 วัน) ≈ ฿13,800</div>
+      <!-- PIE CHARTS -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
+
+        <!-- Travel pie -->
+        <div style="text-align: center;">
+          <svg viewBox="0 0 42 42" style="width: 100%; max-width: 130px;">
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#c9a882" stroke-width="9" stroke-dasharray="35 65" stroke-dashoffset="25"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#8b6f47" stroke-width="9" stroke-dasharray="31 69" stroke-dashoffset="-10"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#6b8e9f" stroke-width="9" stroke-dasharray="17 83" stroke-dashoffset="-41"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#a4b89c" stroke-width="9" stroke-dasharray="11 89" stroke-dashoffset="-58"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#d4c4a8" stroke-width="9" stroke-dasharray="6 94" stroke-dashoffset="-69"/>
+          </svg>
+          <div style="font-family: var(--sans); font-size: 9px; color: var(--ink-light); line-height: 1.9; text-align: left; margin-top: 6px;">
+            <span style="color:#c9a882;">■</span> 🏨 ที่พัก ฿22,491 <strong>35%</strong><br>
+            <span style="color:#8b6f47;">■</span> 🍱 อาหาร ฿19,727 <strong>31%</strong><br>
+            <span style="color:#6b8e9f;">■</span> 🎫 ทัวร์/กระเช้า ฿11,047 <strong>17%</strong><br>
+            <span style="color:#a4b89c;">■</span> 🚂 รถไฟ ฿6,900 <strong>11%</strong><br>
+            <span style="color:#d4c4a8;">■</span> 🚕 Didi/รถ ฿4,075 <strong>6%</strong>
+          </div>
+        </div>
+
+        <!-- Study pie -->
+        <div style="text-align: center;">
+          <svg viewBox="0 0 42 42" style="width: 100%; max-width: 130px;">
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#6a9a6a" stroke-width="9" stroke-dasharray="49 51" stroke-dashoffset="25"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#8b6f47" stroke-width="9" stroke-dasharray="35 65" stroke-dashoffset="-24"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#d4c4a8" stroke-width="9" stroke-dasharray="10 90" stroke-dashoffset="-59"/>
+            <circle cx="21" cy="21" r="15.9" fill="transparent" stroke="#b8a89a" stroke-width="9" stroke-dasharray="6 94" stroke-dashoffset="-69"/>
+          </svg>
+          <div style="font-family: var(--sans); font-size: 9px; color: var(--ink-light); line-height: 1.9; text-align: left; margin-top: 6px;">
+            <span style="color:#6a9a6a;">■</span> 🏨 ที่พัก ฿13,275 <strong>49%</strong><br>
+            <span style="color:#8b6f47;">■</span> 🍱 อาหาร ฿9,546 <strong>35%</strong><br>
+            <span style="color:#d4c4a8;">■</span> 🚕 Didi/metro ฿2,737 <strong>10%</strong><br>
+            <span style="color:#b8a89a;">■</span> 📦 ของใช้+อื่นๆ ฿1,502 <strong>6%</strong>
+          </div>
+        </div>
       </div>
 
-      <!-- Travel per-day -->
-      <div style="background: #fdf3e8; border-left: 3px solid var(--lijiang-soft); border-radius: 4px; padding: 10px 12px; margin-bottom: 10px;">
-        <div style="font-family: var(--sans); font-size: 9px; letter-spacing: 1px; color: var(--ink-light); margin-bottom: 4px;">🎡 เฟสเที่ยว · ต่อวัน (แปรผัน · ไม่รวมตั๋วใหญ่)</div>
-        <div style="font-family: var(--serif); font-size: 20px; font-weight: 600; color: var(--ink);">~฿3,600<span style="font-size: 12px;">/วัน</span></div>
-        <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-top: 3px; line-height: 1.5;">🏨 ฿1,700 · 🍱 ฿1,620 · 🚕 รถในเมือง ฿280<br><em>+ รถไฟ / กระเช้า / ทัวร์ บวกเพิ่มตามทริป</em></div>
+      <!-- PER-DAY COMPARISON -->
+      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.9; margin-bottom: 12px; padding: 10px 12px; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px;">
+        <strong style="color: var(--ink);">📊 เทียบต่อวัน:</strong><br>
+        🍱 อาหาร: เที่ยว <strong>฿1,517</strong> vs เรียน <strong>฿1,061</strong> <span style="opacity:0.7">(เรียนถูกกว่า ฿456)</span><br>
+        🏨 ที่พัก: เที่ยว <strong>~฿1,730</strong> vs เรียน <strong>฿1,475</strong><br>
+        🚕 เดินทาง: เที่ยว <strong>฿313</strong> vs เรียน <strong>฿304</strong> <span style="opacity:0.7">(พอกัน)</span>
       </div>
 
-      <!-- Per-city hotels -->
-      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-bottom: 8px; line-height: 1.7;">
-        <strong style="color: var(--ink);">🏨 ที่พัก/คืน รายเมือง:</strong> Dali ฿1,176 · Shangri-La ฿1,520 · Lijiang ฿1,705 · Fuxian ฿2,766<br>
-        <span style="opacity: 0.65;">(คุนหมิงคืนแรก ฿1,468 = โรงแรมบัดเจ็ต · ตัดออกจากค่าเฉลี่ย)</span>
+      <!-- HOTELS PER CITY -->
+      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-bottom: 12px; line-height: 1.7;">
+        <strong style="color: var(--ink);">🏨 ที่พัก/คืน รายเมือง:</strong> Dali ฿1,176 · Kunming(เรียน) ฿1,475 · Shangri-La ฿1,520 · Lijiang ฿1,705 · Fuxian ฿2,766
       </div>
 
-      <!-- One-off -->
-      <div style="font-family: var(--sans); font-size: 10px; color: var(--ink-light); margin-bottom: 10px; line-height: 1.7;">
-        <strong style="color: var(--ink);">➕ ครั้งเดียว (บวกเพิ่มเอง):</strong><br>
-        🚂 รถไฟข้ามเมือง ฿875–3,210/เที่ยว · 🎫 กระเช้า/ทัวร์ ฿821–4,523/อัน
-      </div>
-
-      <!-- Planning formula -->
-      <div style="background: #f0e7d6; border-left: 3px solid var(--hub); border-radius: 4px; padding: 9px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.7; margin-bottom: 12px;">
+      <!-- PLANNING FORMULA -->
+      <div style="background: #f0e7d6; border-left: 3px solid var(--hub); border-radius: 4px; padding: 10px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.8; margin-bottom: 14px;">
         <strong style="color: var(--ink);">🧮 สูตรวางแผนทริปหน้า:</strong><br>
-        เที่ยว N วัน = <strong style="color: var(--ink);">N × ฿3,600</strong> + ค่ารถไฟ + ค่ากระเช้า/ทัวร์<br>
-        <span style="opacity: 0.8;">ตย. 6 วัน 2 เมือง = 6×3,600 + รถไฟ (~฿4,000) + กระเช้า (~฿6,000) ≈ <strong style="color: var(--ink);">฿31,600</strong> (ไม่รวมตั๋วบิน)</span>
+        🎡 เที่ยว N วัน = <strong style="color: var(--ink);">N × ฿4,940</strong> <span style="opacity:0.75">(รวมทุกอย่าง)</span><br>
+        📚 เรียน N วัน = <strong style="color: var(--ink);">N × ฿3,010</strong> <span style="opacity:0.75">(+ ค่าคอร์สแยก)</span><br>
+        <span style="opacity:0.8">ตย. เที่ยว 7 วัน + เรียน 14 วัน ≈ 34,600 + 42,100 = <strong style="color: var(--ink);">~฿76,700</strong> (ไม่รวมตั๋วบิน+คอร์ส)</span>
       </div>
 
       <div style="background: #f4ede0; border-left: 3px solid var(--lijiang-soft); padding: 8px 12px; font-family: var(--sans); font-size: 10px; color: var(--ink-light); line-height: 1.6;">
